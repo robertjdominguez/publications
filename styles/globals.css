@@ -6,9 +6,10 @@
   --white-shadow: hsla(0, 0%, 100%, 0.65);
   --gold: hsl(42, 85%, 49%);
   --black: hsl(244, 89%, 4%);
-  --black-2: hsl(240, 21%, 8%);
+  --black-2: hsla(243, 90%, 4%, 0.781);
   --grey: hsl(244, 16%, 39%);
-  --dark-grey: hsl(244, 49%, 12%);
+  --light-grey: hsl(196, 20%, 71%);
+  --dark-grey: hsl(208, 11%, 52%);
 
   /* Font sizes */
   --hero: clamp(2rem, 3vw, 3rem);
@@ -75,42 +76,7 @@ p {
   column-width: 300px;
 }
 
-@keyframes glow {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes wrong {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  } /* The following five values can be played with to make the waving more or less extreme */
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-    transform: scale(1.5);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  } /* Reset for the last half to pause */
-  100% {
-    transform: rotate(0deg);
-  }
+.poem p {
+  padding: 0;
+  margin: 0;
 }

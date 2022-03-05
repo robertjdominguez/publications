@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { actaFetcher } from "../../utils/api";
+import { actaFetcher, truncate } from "../../utils/api";
 import { allArticlesQuery } from "../../utils/queries";
 
 const index = ({ top, posts }) => {
@@ -24,8 +24,8 @@ const index = ({ top, posts }) => {
           <div key={post.id}>
             <RecentImg bg={`${post.image.url}`} />
             <h3>{post.headline}</h3>
-            <p>{post.hook}</p>
-            <Link href={`/acta-diurna/posts/${post.slug}`}>
+            <p>{truncate(post.hook, 100)}</p>
+            <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
               <a>Read More &rarr;</a>
             </Link>
           </div>
@@ -39,6 +39,9 @@ const index = ({ top, posts }) => {
             <div>
               <h3>{post.headline}</h3>
               <p>{post.hook}</p>
+              <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
+                <a>Read More &rarr;</a>
+              </Link>
             </div>
           </Post>
         ))}
@@ -86,9 +89,30 @@ const Recent = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
+  align-content: space-between;
+  margin-bottom: 5vh;
 
   h3 {
     font-size: 1rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a {
+      margin-left: auto;
+      text-decoration: none;
+      background: var(--dark-grey);
+      color: white;
+      padding: 8px 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background: var(--light-grey);
+    }
   }
 `;
 
@@ -119,6 +143,20 @@ const Post = styled.div`
     margin-top: 0;
   }
 
+  a {
+    margin-left: auto;
+    text-decoration: none;
+    background: var(--dark-grey);
+    color: white;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: var(--light-grey);
+    }
+  }
+
   @media (max-width: 600px) {
      {
       grid-template-columns: 1fr;
@@ -146,7 +184,8 @@ const Menu = styled.ul`
   gap: 20px;
   width: 100%;
   justify-content: space-between;
-  font-size: clamp(0.5rem, 2.5vw, 1.4rem);
+  font-size: clamp(0rem, 2.5vw, 1.4rem);
+  text-align: center;
   list-style: none;
   padding-left: 0;
 `;

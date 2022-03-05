@@ -27,3 +27,18 @@ export function dragonFetcher(query, variables) {
 export const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
+
+// function to truncate text to 200 characters
+export function truncate(str, length, ending) {
+  if (length == null) {
+    length = 200;
+  }
+  if (ending == null) {
+    ending = "...";
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+}
