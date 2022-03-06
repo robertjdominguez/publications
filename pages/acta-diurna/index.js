@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
 import { actaFetcher, truncate } from "../../utils/api";
 import { allArticlesQuery } from "../../utils/queries";
 
@@ -22,7 +23,16 @@ const index = ({ top, posts }) => {
       <Recent>
         {top.map((post) => (
           <div key={post.id}>
-            <RecentImg bg={`${post.image.url}`} />
+            <RecentImg>
+              <Image
+                src={post.image.url}
+                alt={post.headline}
+                layout='fill'
+                objectFit='cover'
+                placeholder='blur'
+                blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
+              />
+            </RecentImg>
             <h3>{post.headline}</h3>
             <p>{truncate(post.hook, 100)}</p>
             <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
@@ -35,8 +45,18 @@ const index = ({ top, posts }) => {
       <Gallery>
         {posts.map((post) => (
           <Post key={post.id}>
-            <PostImg bg={`${post.image.url}`} />
-            <div>
+            <PostImg>
+              <Image
+                src={post.image.url}
+                alt={post.headline}
+                layout='fill'
+                objectFit='cover'
+                placeholder='blur'
+                blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
+                loading='lazy'
+              />
+            </PostImg>
+            <div id='details'>
               <h3>{post.headline}</h3>
               <p>{post.hook}</p>
               <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
@@ -118,6 +138,7 @@ const Recent = styled.div`
 
 const RecentImg = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   height: 300px;
   background-image: url(${(props) => props.bg});
@@ -143,17 +164,31 @@ const Post = styled.div`
     margin-top: 0;
   }
 
-  a {
-    margin-left: auto;
-    text-decoration: none;
-    background: var(--dark-grey);
-    color: white;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+  #details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
-    &:hover {
-      background: var(--light-grey);
+    a {
+      margin-left: auto;
+      text-decoration: none;
+      background: var(--dark-grey);
+      color: white;
+      padding: 8px 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      margin-top: auto;
+
+      &:hover {
+        background: var(--light-grey);
+      }
+
+      @media (max-width: 600px) {
+         {
+          width: 100%;
+          text-align: center;
+        }
+      }
     }
   }
 
@@ -165,6 +200,7 @@ const Post = styled.div`
 `;
 
 const PostImg = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   background-image: url(${(props) => props.bg});

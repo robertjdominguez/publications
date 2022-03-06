@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import { actaFetcher } from "../../../utils/api";
 import { SingleArticleQuery, allArticlesQuery } from "../../../utils/queries";
 
@@ -20,7 +21,16 @@ const Slug = ({ post }) => {
           <small>{genTime(post.createdAt)}</small>
         </Info>
       </Deets>
-      <FullImg src={`${post.image.url}`} />
+      <FullImg>
+        <Image
+          src={post.image.url}
+          alt={post.headline}
+          layout='fill'
+          objectFit='cover'
+          placeholder='blur'
+          blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
+        />
+      </FullImg>
       <Body dangerouslySetInnerHTML={{ __html: post.body.html }} />
     </div>
   );
@@ -50,10 +60,11 @@ export const getStaticPaths = async () => {
 
 export default Slug;
 
-const FullImg = styled.img`
+const FullImg = styled.div`
   width: 100%;
-  height: auto;
+  height: 100vh;
   justify-self: center;
+  position: relative;
 `;
 
 const Deets = styled.div`
