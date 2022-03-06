@@ -8,7 +8,7 @@ const index = ({ top, posts }) => {
   return (
     <div className='wrapper'>
       <Landing>
-        <img src='./knight-sword.png' />
+        <img src='./knight-sword.png' alt='Acta Diurna Knight Logo' />
         <h1>The Acta Diurna</h1>
       </Landing>
       <Menu>

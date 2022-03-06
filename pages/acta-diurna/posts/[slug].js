@@ -100,6 +100,7 @@ const Author = styled.img`
 const Body = styled.div`
   img {
     width: 100%;
+    height: auto;
     margin: 4vh 0;
   }
 `;
