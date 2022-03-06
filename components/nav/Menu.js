@@ -75,11 +75,12 @@ export const Choices = styled(motion.ul)`
   padding-top: 10vw;
   padding-left: 4vw;
   padding-right: 4vw;
+  margin-top: -2vh;
   position: fixed;
   top: 0;
   left: 0;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 102vh;
   background: var(--white);
   /* margin-top: -10vh; */
   padding-bottom: 10vh;

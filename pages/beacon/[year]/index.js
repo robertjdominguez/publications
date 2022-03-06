@@ -9,22 +9,24 @@ import {
 
 const index = ({ year, data, entries }) => {
   return (
-    <div className='wrapper'>
-      <Frontmatter>
-        <h1>The Beacon: {year}</h1>
-        <img src={`${data.coverArt.url}`} />
-        <div dangerouslySetInnerHTML={{ __html: data.introduction.html }} />
-        <ul>
-          {entries.map((entry) => (
-            <li key={entry.id}>
-              <Link href={`/beacon/${year}/${entry.slug}`}>
-                <a>{entry.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Frontmatter>
-    </div>
+    <Info>
+      <Wrapper>
+        <Frontmatter>
+          <h1>The Beacon: {year}</h1>
+          <img src={`${data.coverArt.url}`} />
+          <div dangerouslySetInnerHTML={{ __html: data.introduction.html }} />
+          <ul>
+            {entries.map((entry) => (
+              <li key={entry.id}>
+                <Link href={`/beacon/${year}/${entry.slug}`}>
+                  <a>{entry.title}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Frontmatter>
+      </Wrapper>
+    </Info>
   );
 };
 
@@ -64,4 +66,19 @@ const Frontmatter = styled.div`
   img {
     width: 100%;
   }
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: var(--black);
+  color: white;
+  margin-top: -10vh;
+  padding-top: 10vh;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
 `;

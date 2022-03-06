@@ -55,7 +55,7 @@ query landingQuery {
 
 export const allYearsQuery = `
 query allYearsQuery {
-    years(orderBy: year_ASC) {
+    years(orderBy: year_DESC) {
       id
       introduction {
         html

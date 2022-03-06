@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <>
       <MenuButton />
       <Menu />
-      <div style={{ marginTop: `20vh` }}>{children}</div>
+      <div style={{ paddingTop: `10vh` }}>{children}</div>
     </>
   );
 }

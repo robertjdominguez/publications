@@ -10,7 +10,7 @@ const MenuButton = () => {
         className='h-6 w-6'
         fill='none'
         viewBox='0 0 24 24'
-        stroke='currentColor'
+        stroke='var(--accent)'
         onClick={() => setIsNavVisible(!isNavVisible)}
         style={{
           // position: `fixed`,
@@ -42,7 +42,7 @@ export const MenuWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
   top: 0;
-  background: var(--white);
+  /* background: var(--white); */
   z-index: 5;
 
   svg {

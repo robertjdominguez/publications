@@ -4,12 +4,14 @@ import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
 
 const Slug = ({ entry }) => {
   return (
-    <div className='wrapper'>
-      <h1>{entry.title}</h1>
-      <h2>By: {entry.author}</h2>
-      <FullImg src={entry.image?.url} />
-      <div dangerouslySetInnerHTML={{ __html: entry.body?.html }} />
-    </div>
+    <Info>
+      <Wrapper>
+        <h1>{entry.title}</h1>
+        <h2>By: {entry.author}</h2>
+        <FullImg src={entry.image?.url} />
+        <div dangerouslySetInnerHTML={{ __html: entry.body?.html }} />
+      </Wrapper>
+    </Info>
   );
 };
 
@@ -41,4 +43,19 @@ const FullImg = styled.img`
   width: 100%;
   height: auto;
   justify-self: center;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: var(--black);
+  color: white;
+  margin-top: -10vh;
+  padding-top: 10vh;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
 `;

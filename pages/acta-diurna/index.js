@@ -54,6 +54,7 @@ const index = ({ top, posts }) => {
                 placeholder='blur'
                 blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
                 loading='lazy'
+                lazyBoundary='400px'
               />
             </PostImg>
             <div id='details'>
@@ -133,6 +134,13 @@ const Recent = styled.div`
       &:hover {
         background: var(--light-grey);
     }
+
+    @media (max-width: 600px) {
+         {
+          width: 100%;
+          text-align: center;
+        }
+      }
   }
 `;
 
