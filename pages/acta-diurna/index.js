@@ -182,7 +182,7 @@ const Post = styled.div`
       text-decoration: none;
       background: var(--dark-grey);
       color: white;
-      padding: 8px 10px;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       margin-top: auto;

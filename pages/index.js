@@ -13,16 +13,15 @@ export default function Home() {
         <p>
           At The Altamont School, we embrace the importance of student voice
           through written and visual works. We strive to provide a safe
-          environment for student self-expression and to encourage students to
-          express themselves through writing and art. Below, you'll find our
-          three student publications and our students' excellent work.
+          environment for student self-expression. Below, you'll find our three
+          student publications and our students' excellent work.
         </p>
         <Gallery>
           <Item>
             <h2>The Acta Diurna</h2>
             <p>
-              School Newspaper with information about student life, sports, and
-              happenings on the hill.
+              A school newspaper with information about student life, sports,
+              and happenings on the hill.
             </p>
             <Link href='/acta-diurna'>
               <a>Read &rarr;</a>
@@ -42,7 +41,7 @@ export default function Home() {
             <h2>The Dragon</h2>
             <p>
               Our annual literary publication and oldest tradition of
-              documenting students' creative expressions.
+              cataloguing students' creative expressions.
             </p>
             <Link href='/dragon'>
               <a>Read &rarr;</a>
@@ -93,11 +92,17 @@ const Gallery = styled.div`
 const Item = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 2rem;
   width: 100%;
+  min-height: 100%;
   border: solid 1px white;
   border-radius: 5px;
   text-align: center;
+
+  h2 {
+    margin: 0;
+  }
 
   a {
     text-decoration: none;
@@ -105,6 +110,8 @@ const Item = styled.div`
     background: var(--dark-grey);
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
+    margin-top: 4vh;
+    padding: 0.5rem 1rem;
 
     &:hover {
       background: var(--light-grey);
