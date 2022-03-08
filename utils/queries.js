@@ -111,6 +111,7 @@ query yearlyEntriesQuery($year: String!) {
       }
       author
       slug
+      contentType
       body {
         html
       }
