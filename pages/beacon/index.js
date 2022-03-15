@@ -7,14 +7,14 @@ import { allYearsQuery, landingQuery } from "../../utils/queries";
 const index = ({ frontMatter, years }) => {
   return (
     <Container>
-      <div className='wrapper'>
+      <Landing>
         <h1>The Beacon</h1>
         <div dangerouslySetInnerHTML={{ __html: frontMatter }} />
         <p>
           Below, you can find each year's publication, starting with the most
           recent. Simply click a year to see its contents.
         </p>
-      </div>
+      </Landing>
       {years.map((year) => (
         <CoverArt key={year.year}>
           <Image src={year.coverArt.url} layout='fill' objectFit='cover' />
@@ -45,6 +45,22 @@ export const getStaticProps = async () => {
 };
 
 export default index;
+
+const Landing = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -10vh;
+  padding: 10vh 20px;
+
+  h1 {
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+`;
 
 const CoverArt = styled.div`
   display: flex;

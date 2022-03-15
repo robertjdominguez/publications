@@ -9,7 +9,7 @@ import {
 
 const index = ({ year, data, entries }) => {
   return (
-    <Info>
+    <Main>
       <Wrapper>
         <Frontmatter>
           <h1>The Beacon: {year}</h1>
@@ -35,7 +35,7 @@ const index = ({ year, data, entries }) => {
           ))}
         </Gallery>
       </Wrapper>
-    </Info>
+    </Main>
   );
 };
 
@@ -77,7 +77,7 @@ const Frontmatter = styled.div`
   }
 `;
 
-const Info = styled.div`
+const Main = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--black);
@@ -89,18 +89,22 @@ const Info = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2vw;
+  padding: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Gallery = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 40px;
 
   a {
     text-decoration: none;
     color: white;
     cursor: pointer;
+    width: 100%;
   }
 `;
 
@@ -112,7 +116,7 @@ const Item = styled.div`
   width: 100%;
   color: white;
   border-left: solid 4px var(--dark-grey);
-  padding-left: 2vw;
+  padding-left: 40px;
   transition: ease-in-out 0.2s;
 
   &:hover {
