@@ -28,7 +28,7 @@ const index = ({ year, data, entries }) => {
                   <h3>{entry.title}</h3>
 
                   <small>{entry.contentType}</small>
-                  <p>{entry.author}</p>
+                  <p>{entry.author.name}</p>
                 </Item>
               </a>
             </Link>

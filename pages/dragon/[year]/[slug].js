@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { dragonFetcher } from "../../../utils/api";
-import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
+import {
+  singleEntryQuery,
+  allEntriesQuery,
+  dragonPagesQuery,
+} from "../../../utils/queries";
 
 const Slug = ({ entry }) => {
   return (
@@ -22,6 +26,7 @@ const Slug = ({ entry }) => {
 export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params;
   const { entry } = await dragonFetcher(singleEntryQuery, { slug: slug });
+  const { pages } = await dragonFetcher(dragonPagesQuery, { year: entry.year });
 
   return {
     props: {

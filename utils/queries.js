@@ -90,7 +90,14 @@ query allEntriesQuery{
       image {
         url
       }
-      author
+      author {
+        name
+        slug
+        blurb
+        image {
+          url
+        }
+      }
       year {
         year
       }
@@ -104,19 +111,26 @@ query allEntriesQuery{
 
 export const yearlyEntriesQuery = `
 query yearlyEntriesQuery($year: String!) {
-    entries(where: {year: {year: $year}}) {
-      title
+  entries(where: {year: {year: $year}}, orderBy: contentType_ASC) {
+    title
+    image {
+      url
+    }
+    author {
+      name
+      slug
+      blurb
       image {
         url
       }
-      author
-      slug
-      contentType
-      body {
-        html
-      }
     }
-  }  
+    slug
+    contentType
+    body {
+      html
+    }
+  }
+}
 `;
 
 export const singleEntryQuery = `
@@ -126,11 +140,71 @@ query singleEntryQuery($slug: String!) {
     body {
       html
     }
-    author
+    author {
+      name
+      slug
+      blurb
+      image {
+        url
+      }
+    }
     image {
       url
     }
     contentType
+  }
+}
+`;
+
+export const dragonPagesQuery = `
+query dragonPagesQuery($year: String!) {
+  pages(where: {year: {year: $year}}) {
+    id
+    backgroundColor {
+      hex
+    }
+    entries {
+      id
+      title
+      slug
+      author {
+        name
+        slug
+        blurb
+        image {
+          url
+        }
+      }
+      body {
+        html
+      }
+    }
+  }
+}
+
+`;
+
+export const singleDragonPage = `
+query singleEntryQuery($id: ID!) {
+  page(where: {id: $id}) {
+    id
+    backgroundColor {
+      hex
+    }
+    entries {
+      title
+      author {
+        name
+        slug
+        blurb
+        image {
+          url
+        }
+      }
+      body {
+        html
+      }
+    }
   }
 }
 `;

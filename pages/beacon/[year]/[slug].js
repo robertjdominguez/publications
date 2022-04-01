@@ -1,15 +1,22 @@
 import styled from "styled-components";
 import { beaconFetcher } from "../../../utils/api";
 import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
+import Author from "./Author";
 
 const Slug = ({ entry }) => {
   return (
     <Info>
       <Wrapper>
         <h1>{entry.title}</h1>
-        <h2>By: {entry.author}</h2>
+        <h2>By: {entry.author.name}</h2>
         <FullImg src={entry.image?.url} />
         <div dangerouslySetInnerHTML={{ __html: entry.body?.html }} />
+        <Author
+          name={entry.author.name}
+          blurb={entry.author.blurb}
+          image={entry.author.image.url}
+          slug={entry.author.slug}
+        />
       </Wrapper>
     </Info>
   );
@@ -58,4 +65,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2vw;
+  max-width: 1200px;
+  margin: 0 auto;
 `;

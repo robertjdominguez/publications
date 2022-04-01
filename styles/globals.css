@@ -5,6 +5,7 @@
   --white: hsl(0, 0%, 100%);
   --white-shadow: hsla(0, 0%, 100%, 0.65);
   --gold: hsl(42, 85%, 49%);
+  --gold-2: hsl(42, 70%, 62%);
   --black: hsl(244, 89%, 4%);
   --black-2: hsla(243, 90%, 4%, 0.781);
   --grey: hsl(244, 16%, 39%);
@@ -20,7 +21,7 @@
   /* Themeing */
   --foreground: var(--black);
   --accent: var(--gold);
-  --accent-2: var(--red-2);
+  --accent-2: var(--gold-2);
   --accent-3: var(--red-3);
   --maxxed-out: 900px;
   --padded-out: clamp(2vw, 4vw, 4vw);
