@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { beaconFetcher } from "../../../utils/api";
 import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
-import Author from "./Author";
+import Author from "../../../components/beacon-components/AuthorMore";
 
 const Slug = ({ entry }) => {
   return (

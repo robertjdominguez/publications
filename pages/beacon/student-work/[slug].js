@@ -4,7 +4,7 @@ import {
   beaconAuthorQuery,
   allBeaconAuthorsQuery,
 } from "../../../utils/queries";
-import Author from "./Author";
+import Author from "../../../components/beacon-components/AuthorBio";
 
 const Slug = ({ author }) => {
   return (
