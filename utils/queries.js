@@ -208,3 +208,35 @@ query singleEntryQuery($id: ID!) {
   }
 }
 `;
+
+export const beaconAuthorQuery = `
+query BeaconAuthor($slug: String = "") {
+  author(where: {slug: $slug}) {
+    id
+    name
+    slug
+    blurb
+    image {
+      url
+    }
+    entries(orderBy: createdAt_ASC) {
+      id
+      slug
+      title
+      year {
+        year
+      }
+    }
+  }
+}
+`;
+
+export const allBeaconAuthorsQuery = `
+query MyQuery {
+  authors {
+    id
+    name
+    slug
+  }
+}
+`;

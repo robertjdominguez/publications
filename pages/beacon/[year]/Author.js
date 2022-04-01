@@ -6,7 +6,7 @@ const Author = ({ name, image, blurb, slug }) => {
   return (
     <AuthorWrapper>
       <AuthorImage>
-        <Image src={image} layout='fill' objectFit='contain' />
+        <Image src={image} layout='fill' objectFit='cover' />
       </AuthorImage>
       <Deets>
         <h3>{name}</h3>
@@ -22,27 +22,31 @@ const Author = ({ name, image, blurb, slug }) => {
 export default Author;
 
 const AuthorWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
   gap: 40px;
   align-items: center;
-  border-top: solid 1px var(--light-grey);
   min-height: 20vh;
   margin-top: 10vh;
   padding-top: 5vh;
+  border-top: solid 1px var(--light-grey);
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 `;
 
 const AuthorImage = styled.div`
-  display: flex;
   position: relative;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-`;
+  align-self: center;
+  margin: auto;
 
+  img {
+    border-radius: 50%;
+  }
+`;
 const Deets = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,6 +63,7 @@ const Deets = styled.div`
     transition: ease-in-out 0.2s;
 
     &:hover {
-        border-bottom: solid 1px var(--accent-2);
+      border-bottom: solid 1px var(--accent-2);
+    }
   }
 `;

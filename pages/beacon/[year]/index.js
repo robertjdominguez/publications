@@ -26,7 +26,6 @@ const index = ({ year, data, entries }) => {
               <a>
                 <Item>
                   <h3>{entry.title}</h3>
-
                   <small>{entry.contentType}</small>
                   <p>{entry.author.name}</p>
                 </Item>
@@ -112,27 +111,29 @@ const Item = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 250px;
-  width: 100%;
-  color: white;
-  border-left: solid 4px var(--dark-grey);
-  padding-left: 40px;
-  transition: ease-in-out 0.2s;
-
-  &:hover {
-    border-left: solid 4px var(--accent);
-  }
+  height: 100%;
+  border: solid 1px transparent;
+  transition: 0.2s ease-in-out;
+  padding: 10px 20px;
 
   h3 {
-    margin: 0;
+    font-size: 0.875rem;
   }
 
   small {
     font-size: 0.8rem;
-    background: var(--dark-grey);
-    padding: 4px 12px;
-    width: fit-content;
-    margin: 10px 0px;
+    background: var(--accent-2);
+    padding: 5px 10px;
+    margin-right: auto;
+    color: var(--black);
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  &:hover {
+    border: solid 1px var(--accent);
   }
 `;
 
