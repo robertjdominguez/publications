@@ -12,7 +12,7 @@ const index = ({ year, data, entries }) => {
     <Main>
       <Wrapper>
         <Frontmatter>
-          <h1>The Beacon: {year}</h1>
+          <h1>The Dragon: {year}</h1>
           <img src={`${data.coverArt.url}`} />
           <div dangerouslySetInnerHTML={{ __html: data.introduction.html }} />
         </Frontmatter>
@@ -22,7 +22,7 @@ const index = ({ year, data, entries }) => {
             <p>Below you'll find the contents of this year's Beacon.</p>
           </Deets>
           {entries.map((entry) => (
-            <Link href={`/beacon/${year}/${entry.slug}`} key={entry.id}>
+            <Link href={`/dragon/${year}/${entry.slug}`} key={entry.id}>
               <a>
                 <Item>
                   <h3>{entry.title}</h3>

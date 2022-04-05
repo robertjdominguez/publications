@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import { beaconFetcher } from "../../utils/api";
+import { dragonFetcher, truncate } from "../../utils/api";
 import { allYearsQuery, landingQuery } from "../../utils/queries";
 
 const index = ({ frontMatter, years }) => {
@@ -19,26 +19,36 @@ const index = ({ frontMatter, years }) => {
           </Info>
         </Landing>
       </LandingWrapper>
-      {years.map((year) => (
-        <CoverArt key={year.year}>
-          <Image src={year.coverArt.url} layout='fill' objectFit='cover' />
-          <ArtWrapper>
-            <Link href={`/beacon/${year.year}`}>
-              <a>{year.year}</a>
-            </Link>
-          </ArtWrapper>
-        </CoverArt>
-      ))}
+      <YearWrapper>
+        {years.map((year) => (
+          <Year>
+            <ImageContainer>
+              <Image src={year.coverArt.url} layout='fill' objectFit='cover' />
+            </ImageContainer>
+            <Meta>
+              <h2>{year.year}</h2>
+              <aside
+                dangerouslySetInnerHTML={{
+                  __html: truncate(year.introduction.html, 500),
+                }}
+              />
+              <Link href={`/dragon/years/${year.slug}`} scroll={false}>
+                <a>View Issue &rarr;</a>
+              </Link>
+            </Meta>
+          </Year>
+        ))}
+      </YearWrapper>
     </Container>
   );
 };
 
 export const getStaticProps = async () => {
   // Get the landing frontmatter
-  const { landings } = await beaconFetcher(landingQuery);
+  const { landings } = await dragonFetcher(landingQuery);
 
   // Get the years
-  const { years } = await beaconFetcher(allYearsQuery);
+  const { years } = await dragonFetcher(allYearsQuery);
 
   return {
     props: {
@@ -89,70 +99,84 @@ const Landing = styled.div`
   row-gap: 0px;
   place-items: center center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
 `;
 
-const CoverArt = styled.div`
+const YearWrapper = styled.div`
+  aside:nth-child(even) {
+    div {
+      border: solid 4px blue;
+    }
+    article {
+      border: solid 4px red;
+    }
+  }
+`;
+
+const Year = styled.aside`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 80px;
+  align-items: center;
+  margin: 5vh 0;
+  padding: 4vh;
+`;
+
+const Meta = styled.article`
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  flex-direction: column;
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    margin-top: 8vh;
+    background: var(--gold);
+    transition: ease-in-out 0.2s;
+    padding: 0.5rem 1rem;
+    margin-left: auto;
+    border-radius: 8px;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--black);
   margin-top: -10vh;
   padding-top: 10vh;
-  background: var(--black);
 `;
 
-const ArtWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  /* linear gradient background */
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.5)
-  );
-
-  a {
-    text-decoration: none;
-    color: white;
-    font-weight: 900;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    transition: ease-in-out 0.2s;
-
-    :hover {
-      color: var(--accent);
-      transform: scale(1.05);
-    }
-  }
-`;
-
-const CurrentIssue = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-height: 60%;
-
-  @media (max-width: 800px) {
-    max-height: 100%;
-  }
-`;
-
-const CurrentCover = styled.div`
-  display: flex;
+const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 400px;
+  border-radius: 20px;
+  box-shadow: var(--norm-shadow);
+  transition: ease-in-out 0.2s;
+
+  img {
+    border-radius: 20px;
+  }
+
+  &:hover {
+    box-shadow: var(--lg-shadow);
+  }
 `;
 
 const Info = styled.div`
