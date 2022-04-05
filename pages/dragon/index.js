@@ -81,7 +81,7 @@ const LandingWrapper = styled.div`
     color: white;
     margin-top: 4vh;
     transition: ease-in-out 0.2s;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     border: solid 1px white;
     margin-right: auto;
 
@@ -108,10 +108,15 @@ const Landing = styled.div`
 const YearWrapper = styled.div`
   aside:nth-child(even) {
     div {
-      border: solid 4px blue;
+      order: 1;
     }
-    article {
-      border: solid 4px red;
+  }
+
+  @media (max-width: 600px) {
+    aside:nth-child(even) {
+      div {
+        order: 0;
+      }
     }
   }
 `;
@@ -120,7 +125,6 @@ const Year = styled.aside`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 80px;
-  align-items: center;
   margin: 5vh 0;
   padding: 4vh;
 `;
@@ -128,6 +132,7 @@ const Year = styled.aside`
 const Meta = styled.article`
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   p {
     font-size: 0.9rem;
@@ -135,6 +140,9 @@ const Meta = styled.article`
 
   h2 {
     margin: 0;
+    color: var(--gold);
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    font-weight: 800;
   }
 
   a {
@@ -145,6 +153,7 @@ const Meta = styled.article`
     transition: ease-in-out 0.2s;
     padding: 0.5rem 1rem;
     margin-left: auto;
+    margin-top: auto;
     border-radius: 8px;
     text-align: center;
 
