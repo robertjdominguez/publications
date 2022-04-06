@@ -32,7 +32,7 @@ const index = ({ frontMatter, years }) => {
                   __html: truncate(year.introduction.html, 500),
                 }}
               />
-              <Link href={`/dragon/years/${year.slug}`} scroll={false}>
+              <Link href={`/dragon/${year.year}`} scroll={false}>
                 <a>View Issue &rarr;</a>
               </Link>
             </Meta>
@@ -70,6 +70,7 @@ const LandingWrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
   h1 {
     font-size: clamp(2rem, 3vw, 3rem);
@@ -127,6 +128,17 @@ const Year = styled.aside`
   grid-gap: 80px;
   margin: 5vh 0;
   padding: 4vh;
+
+  div {
+    transition: ease-in-out 0.2s;
+  }
+
+  &:hover {
+    div {
+      transform: scale(1.03) rotateZ(-2deg);
+      box-shadow: var(--lg-shadow);
+    }
+  }
 `;
 
 const Meta = styled.article`

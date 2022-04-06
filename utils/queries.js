@@ -240,3 +240,35 @@ query MyQuery {
   }
 }
 `;
+
+export const pagesQuery = `
+query MyQuery($year: String = "") {
+  year(where: {year: $year}) {
+    id
+    introduction {
+      html
+    }
+    year
+    coverArt {
+      url
+    }
+    pages {
+      layout
+      backgroundColor {
+        hex
+      }
+      entries {
+        title
+        author
+        contentType
+        body {
+          html
+        }
+        image {
+          url
+        }
+      }
+    }
+  }
+}
+`;
