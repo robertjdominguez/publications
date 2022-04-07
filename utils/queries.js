@@ -253,6 +253,7 @@ query MyQuery($year: String = "") {
       url
     }
     pages {
+      id
       layout
       backgroundColor {
         hex

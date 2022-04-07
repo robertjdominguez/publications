@@ -1,12 +1,41 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Variants for the page
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    x: "100vw",
+  },
+  in: {
+    opacity: 1,
+    x: 0,
+  },
+  out: {
+    opacity: 0,
+    x: "-100vw",
+  },
+};
 
 const PageBlock = ({ pages, pageNumber }) => {
   return (
     <Container>
-      <Page bg={pages[pageNumber].backgroundColor.hex}>
-        <h2>{pages[pageNumber].entries[0].title}</h2>
-      </Page>
+      {pages.map((page, index) => (
+        <AnimatePresence exitBeforeEnter>
+          <Page
+            key={page.id}
+            style={{ position: `absolute`, width: `100%`, height: `100vh` }}
+            variants={pageVariants}
+            initial='initial'
+            animate={pageNumber === index ? "in" : "out"}
+            exit='out'
+            transition={{ duration: 0.5 }}
+            bg={pages[pageNumber].backgroundColor.hex}
+          >
+            <h2>{page.entries[0].title}</h2>
+          </Page>
+        </AnimatePresence>
+      ))}
     </Container>
   );
 };
@@ -20,11 +49,15 @@ export const Container = styled.div`
   min-height: 90vh;
 `;
 
-export const Page = styled.div`
+export const Page = styled(motion.div)`
   display: grid;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background: ${(props) => props.bg};
+  margin-top: -10vh;
+  margin-left: -9vh;
+  margin-right: -5vh;
+  padding: 5vh;
 `;
 
 export const LayoutOne = styled.div`

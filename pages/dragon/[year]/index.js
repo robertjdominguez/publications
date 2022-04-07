@@ -8,6 +8,13 @@ import PageBlock from "../../../components/dragon-components/PageBlock";
 const index = ({ year }) => {
   const [currentPage, setCurrentPage] = useState(-1);
 
+  // event listener for clicking back
+  const handleBack = () => {
+    if (currentPage > -1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   // usememo to check and see if there is a slug in the window location
   // if there is, set the currentPage to the index of the slug in the pages array
   // if there is not, set the currentPage to -1
@@ -28,14 +35,28 @@ const index = ({ year }) => {
     window.location.hash = `${currentPage + 1}`;
   };
 
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+    // statement to add # to the url
+    window.location.hash = `${currentPage - 1}`;
+  };
+
   return (
     <Main>
-      <p>&larr;</p>
+      {currentPage != -1 && (
+        <p style={{ zIndex: `100` }} onClick={() => prevPage()}>
+          &larr;
+        </p>
+      )}
       {currentPage === -1 && <Content bg={year.coverArt.url} />}
       {currentPage !== -1 && (
         <PageBlock pages={year.pages} pageNumber={currentPage} />
       )}
-      <p onClick={() => nextPage()}>&rarr;</p>
+      {currentPage <= year.pages.length - 2 && (
+        <p style={{ zIndex: `100` }} onClick={() => nextPage()}>
+          &rarr;
+        </p>
+      )}
     </Main>
   );
 };
