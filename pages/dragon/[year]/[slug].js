@@ -17,6 +17,11 @@ const pageVariants = {
   in: {
     opacity: 1,
     x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+    },
   },
   out: {
     opacity: 0,
@@ -45,6 +50,9 @@ const Slug = ({ page, prev, next }) => {
             ))}
             <Link href={`/dragon/2021/${next}`}>
               <Arrow>&rarr;</Arrow>
+            </Link>
+            <Link href={`/`}>
+              <Arrow>&darr;</Arrow>
             </Link>
           </Wrapper>
         </Page>
@@ -99,6 +107,7 @@ const Page = styled(motion.div)`
   width: 100%;
   background: ${(props) => props.bg};
   margin-top: -10vh;
+  padding-top: 10vh;
 `;
 
 const Wrapper = styled.div`

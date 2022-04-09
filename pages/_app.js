@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { AppWrapper } from "../ctx";
 
 function MyApp({ Component, pageProps, router }) {
+  console.log(router.asPath);
   return (
     <AppWrapper>
       <Layout>
@@ -28,9 +29,9 @@ function MyApp({ Component, pageProps, router }) {
           onExitComplete={() => window.scrollTo(0, 0)}
         >
           <motion.div
-            key={router.route}
-            initial='pageInitial'
-            animate='pageAnimate'
+            key={router.asPath}
+            // initial='pageInitial'
+            // animate='pageAnimate'
             // variants={{
             //   pageInitial: {
             //     opacity: 0,
