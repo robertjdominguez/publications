@@ -1,44 +1,84 @@
 import styled from "styled-components";
-import { beaconFetcher } from "../../../utils/api";
-import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
-import Author from "../../../components/beacon-components/AuthorMore";
+import { dragonFetcher } from "../../../utils/api";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  yearPagesQuery,
+  pagesQuery,
+  singlePageQuery,
+} from "../../../utils/queries";
 
-const Slug = ({ entry }) => {
+// Variants for the page
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    x: "100vw",
+  },
+  in: {
+    opacity: 1,
+    x: 0,
+  },
+  out: {
+    opacity: 0,
+    x: "-100vw",
+  },
+};
+
+const Slug = ({ page, prev, next }) => {
   return (
     <Info>
-      <Wrapper>
-        <h1>{entry.title}</h1>
-        <h2>By: {entry.author.name}</h2>
-        <FullImg src={entry.image?.url} />
-        <div dangerouslySetInnerHTML={{ __html: entry.body?.html }} />
-        <Author
-          name={entry.author.name}
-          blurb={entry.author.blurb}
-          image={entry.author.image.url}
-          slug={entry.author.slug}
-        />
-      </Wrapper>
+      <AnimatePresence>
+        <Page
+          key={page.id}
+          variants={pageVariants}
+          initial='initial'
+          animate='in'
+          exit='out'
+          bg={page.backgroundColor.hex}
+        >
+          <Wrapper>
+            <Link href={`/dragon/2021/${prev}`}>
+              <Arrow>&larr;</Arrow>
+            </Link>
+            {page.entries.map((entry) => (
+              <h1>{entry.title}</h1>
+            ))}
+            <Link href={`/dragon/2021/${next}`}>
+              <Arrow>&rarr;</Arrow>
+            </Link>
+          </Wrapper>
+        </Page>
+      </AnimatePresence>
     </Info>
   );
 };
 
 export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params;
-  const { entry } = await beaconFetcher(singleEntryQuery, { slug: slug });
+  const { page } = await dragonFetcher(singlePageQuery, { id: slug });
+  const { pages } = await dragonFetcher(yearPagesQuery, { year: `2021` });
+
+  // find the index of the current page
+  const index = pages.findIndex((p) => p.id === slug);
 
   return {
     props: {
-      entry,
+      page,
+      next: index != pages.length - 1 ? pages[index + 1].id : null,
+      prev: index != 0 ? pages[index - 1].id : null,
     },
   };
 };
 
 // get static paths for all entries
-export const getStaticPaths = async () => {
-  const { entries } = await beaconFetcher(allEntriesQuery);
+export const getStaticPaths = async (ctx) => {
+  const fetched = await dragonFetcher(pagesQuery, {
+    // TODO: remove this hardcoded value!
+    year: `2021`,
+  });
   return {
-    paths: entries.map((entry) => ({
-      params: { slug: entry.slug, year: entry.year.year },
+    paths: fetched.year.pages.map((page) => ({
+      params: { slug: page.id, year: page.year.year },
     })),
     fallback: false,
   };
@@ -46,19 +86,19 @@ export const getStaticPaths = async () => {
 
 export default Slug;
 
-const FullImg = styled.img`
-  width: 100%;
-  height: auto;
-  justify-self: center;
-`;
-
 const Info = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--black);
   color: white;
-  margin-top: -10vh;
   padding-top: 10vh;
+  margin-top: -10vh;
+`;
+
+const Page = styled(motion.div)`
+  width: 100%;
+  background: ${(props) => props.bg};
+  margin-top: -10vh;
 `;
 
 const Wrapper = styled.div`
@@ -67,4 +107,11 @@ const Wrapper = styled.div`
   padding: 2vw;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
+`;
+
+const Arrow = styled.a`
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
 `;
