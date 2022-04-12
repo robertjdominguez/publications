@@ -4,12 +4,11 @@ import Table from "./Table";
 import Left from "./Left";
 import Right from "./Right";
 
-const Toc = ({ prev, next, pages }) => {
-  console.log(prev);
+const Toc = ({ prev, next, setIsNavVisible, isNavVisible }) => {
   return (
     <Widget>
       <Left year={`2021`} prev={prev} />
-      <Table />
+      <Table setIsNavVisible={setIsNavVisible} isNavVisible={isNavVisible} />
       <Right year={`2021`} next={next} />
     </Widget>
   );

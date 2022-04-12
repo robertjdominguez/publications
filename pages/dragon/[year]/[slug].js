@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { dragonFetcher } from "../../../utils/api";
 import Link from "next/link";
@@ -38,7 +39,19 @@ const pageVariants = {
   },
 };
 
+const navVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+  },
+};
+
 const Slug = ({ page, prev, next, pages }) => {
+  const [isNavVisible, setIsNavVisible] = useState(false);
   return (
     <Info>
       <AnimatePresence>
@@ -56,7 +69,29 @@ const Slug = ({ page, prev, next, pages }) => {
             ))}
           </Wrapper>
         </Page>
-        <Toc prev={prev} next={next} pages={pages} />
+        <Toc
+          prev={prev}
+          next={next}
+          pages={pages}
+          setIsNavVisible={setIsNavVisible}
+          isNavVisible={isNavVisible}
+        />
+        <Navigation
+          variants={navVariants}
+          initial='hidden'
+          animate={isNavVisible ? "visible" : "hidden"}
+        >
+          <h2>Pages</h2>
+          {pages.map((page, i) => (
+            <Link
+              key={page.id}
+              href={`/dragon/2021/${page.id}`}
+              as={`/dragon/2021/${page.id}`}
+            >
+              <a>{i + 1}</a>
+            </Link>
+          ))}
+        </Navigation>
       </AnimatePresence>
     </Info>
   );
@@ -132,4 +167,24 @@ const Arrow = styled.a`
   color: white;
   text-decoration: none;
   cursor: pointer;
+`;
+
+const Navigation = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 80px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  background: black;
+
+  a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: white;
+  }
 `;

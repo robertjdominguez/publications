@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
-const Table = () => {
+const Table = ({ isNavVisible, setIsNavVisible }) => {
   return (
     <SVG
+      onClick={() => {
+        setIsNavVisible(!isNavVisible);
+      }}
       xmlns='http://www.w3.org/2000/svg'
       className='h-6 w-6'
       fill='none'
@@ -26,4 +29,5 @@ export const SVG = styled.svg`
   :hover {
     transform: scale(1.1);
   }
+  margin-bottom: 5px;
 `;
