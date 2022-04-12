@@ -7,11 +7,13 @@ import PageBlock from "../../../components/dragon-components/PageBlock";
 
 const index = ({ year }) => {
   return (
-    <Link href={`/dragon/${year.year}/${year.pages[0].id}`}>
-      <a>
-        <Content bg={year.coverArt.url} />
-      </a>
-    </Link>
+    <Main>
+      <Link href={`/dragon/${year.year}/${year.pages[0].id}`}>
+        <a>
+          <Content bg={year.coverArt.url} />
+        </a>
+      </Link>
+    </Main>
   );
 };
 
@@ -38,7 +40,7 @@ export const getStaticPaths = async () => {
 export default index;
 
 const Main = styled.div`
-  display: flex;
+  /* display: flex; */
   background: var(--black);
   color: white;
   margin-top: -10vh;
@@ -46,6 +48,7 @@ const Main = styled.div`
   padding-left: 4vw;
   padding-right: 4vw;
   align-items: center;
+  width: 100%;
 `;
 
 const Content = styled.div`
