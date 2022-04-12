@@ -7,10 +7,16 @@ import {
   pagesQuery,
   singlePageQuery,
 } from "../../../utils/queries";
+import PageComponent from "../../../components/dragon-components/PageComponent";
+import Toc from "../../../components/dragon-components/Toc";
 
 // Variants for the page
 const pageVariants = {
-  initial: {
+  fromLeft: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  fromRight: {
     opacity: 0,
     x: "100vw",
   },
@@ -26,36 +32,31 @@ const pageVariants = {
   out: {
     opacity: 0,
     x: "-100vw",
+    transition: {
+      when: "beforeChildren",
+    },
   },
 };
 
-const Slug = ({ page, prev, next }) => {
+const Slug = ({ page, prev, next, pages }) => {
   return (
     <Info>
       <AnimatePresence>
         <Page
           key={page.id}
           variants={pageVariants}
-          initial='initial'
+          initial='fromRight'
           animate='in'
           exit='out'
           bg={page.backgroundColor.hex}
         >
           <Wrapper>
-            <Link href={`/dragon/2021/${prev}`}>
-              <Arrow>&larr;</Arrow>
-            </Link>
             {page.entries.map((entry) => (
-              <h1>{entry.title}</h1>
+              <PageComponent entry={entry} />
             ))}
-            <Link href={`/dragon/2021/${next}`}>
-              <Arrow>&rarr;</Arrow>
-            </Link>
-            <Link href={`/`}>
-              <Arrow>&darr;</Arrow>
-            </Link>
           </Wrapper>
         </Page>
+        <Toc prev={prev} next={next} pages={pages} />
       </AnimatePresence>
     </Info>
   );
@@ -72,6 +73,7 @@ export const getStaticProps = async (ctx) => {
   return {
     props: {
       page,
+      pages,
       next: index != pages.length - 1 ? pages[index + 1].id : null,
       prev: index != 0 ? pages[index - 1].id : null,
     },
@@ -108,15 +110,22 @@ const Page = styled(motion.div)`
   background: ${(props) => props.bg};
   margin-top: -10vh;
   padding-top: 10vh;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 80px;
   padding: 2vw;
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
+  place-items: start start;
 `;
 
 const Arrow = styled.a`

@@ -285,6 +285,13 @@ query MyQuery($id: ID = "") {
     }
     entries {
       title
+      author
+      body {
+        html
+      }
+      image {
+        url
+      }
     }
   }
 }
