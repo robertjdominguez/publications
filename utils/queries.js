@@ -258,6 +258,9 @@ query MyQuery($year: String = "") {
       backgroundColor {
         hex
       }
+      year {
+        year
+      }
       entries {
         title
         author
@@ -269,6 +272,40 @@ query MyQuery($year: String = "") {
           url
         }
       }
+    }
+  }
+}
+`;
+
+export const singlePageQuery = `
+query MyQuery($id: ID = "") {
+  page(where: {id: $id}) {
+    backgroundColor {
+      hex
+    }
+    entries {
+      title
+      author
+      body {
+        html
+      }
+      image {
+        url
+      }
+    }
+  }
+}
+`;
+
+export const yearPagesQuery = `
+query MyQuery($year: String = "") {
+  pages(where: {year: {year: $year}}) {
+    id
+    entries {
+      title
+    }
+    backgroundColor {
+      hex
     }
   }
 }
