@@ -283,6 +283,7 @@ query MyQuery($id: ID = "") {
     backgroundColor {
       hex
     }
+    layout
     entries {
       title
       author

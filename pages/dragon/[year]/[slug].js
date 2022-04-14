@@ -50,6 +50,16 @@ const navVariants = {
   },
 };
 
+// Function to take an array and create a string with an oxford comma list
+const list = (array) => {
+  const itemProps = array.map((item) => item.title);
+  const lastItem = itemProps.pop();
+  if (itemProps.length === 0) return lastItem;
+  return (
+    itemProps.join(", ") + (itemProps.length ? "," : "") + " and " + lastItem
+  );
+};
+
 const Slug = ({ page, prev, next, pages }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
   return (
@@ -65,7 +75,7 @@ const Slug = ({ page, prev, next, pages }) => {
         >
           <Wrapper>
             {page.entries.map((entry) => (
-              <PageComponent entry={entry} />
+              <PageComponent entry={entry} layout={page.layout} />
             ))}
           </Wrapper>
         </Page>
@@ -88,7 +98,10 @@ const Slug = ({ page, prev, next, pages }) => {
               href={`/dragon/2021/${page.id}`}
               as={`/dragon/2021/${page.id}`}
             >
-              <a>{i + 1}</a>
+              <a>
+                <span>{i + 1}</span>
+                <span>{list(page.entries)}</span>
+              </a>
             </Link>
           ))}
         </Navigation>
@@ -163,12 +176,6 @@ const Wrapper = styled.div`
   place-items: start start;
 `;
 
-const Arrow = styled.a`
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-`;
-
 const Navigation = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -181,10 +188,27 @@ const Navigation = styled(motion.div)`
   flex-direction: column;
   padding: 20px 40px;
   background: black;
+  display: flex;
+  flex-direction: column;
 
   a {
+    display: flex;
+    margin-bottom: 2vh;
+    align-items: center;
+    justify-content: space-between;
     font-size: 1.2rem;
     text-decoration: none;
     color: white;
+    border-bottom: solid 1px transparent;
+    transition: 0.2s ease-in-out;
+
+    :hover {
+      color: var(--accent);
+      border-bottom: solid 1px var(--accent);
+    }
+
+    @media(max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
   }
 `;

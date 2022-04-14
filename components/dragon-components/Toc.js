@@ -41,5 +41,6 @@ const Widget = styled(motion.div)`
     text-decoration: none;
     color: var(--white);
     width: 100%;
+    text-align: center;
   }
 `;

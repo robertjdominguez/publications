@@ -28,7 +28,6 @@ const PageBlock = ({ pages, pageNumber }) => {
           <Page
             key={page.id}
             style={{
-              position: `absolute`,
               width: `110%`,
               minHeight: `100vh`,
             }}
@@ -39,7 +38,7 @@ const PageBlock = ({ pages, pageNumber }) => {
             transition={{ duration: 0.5 }}
             bg={pages[pageNumber].backgroundColor.hex}
           >
-            <LayoutOne>
+            {/* <LayoutOne>
               <div>
                 <h2>{page.entries[0].title}</h2>
                 <Body
@@ -56,7 +55,7 @@ const PageBlock = ({ pages, pageNumber }) => {
                   }}
                 />
               </div>
-            </LayoutOne>
+            </LayoutOne> */}
           </Page>
         </AnimatePresence>
       ))}

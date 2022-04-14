@@ -3,9 +3,10 @@ import Link from "next/link";
 
 const Right = ({ year, next }) => {
   return (
-    <Link href={`/dragon/${year}/${next}`}>
+    <Link href={next !== null ? `/dragon/${year}/${next}` : `/dragon/${year}`}>
       <a>
         <SVG
+          next={next}
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6'
           fill='none'
@@ -31,4 +32,5 @@ export const SVG = styled.svg`
   :hover {
     transform: scale(1.1);
   }
+  opacity: ${(props) => (props.next ? 1 : 0)};
 `;
