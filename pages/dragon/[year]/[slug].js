@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { dragonFetcher } from "../../../utils/api";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   yearPagesQuery,
   pagesQuery,
@@ -25,17 +25,19 @@ const pageVariants = {
     opacity: 1,
     x: 0,
     transition: {
+      duration: 0.5,
       type: "spring",
       stiffness: 100,
       damping: 15,
     },
   },
-  out: {
+  outRight: {
+    opacity: 0,
+    x: "100vw",
+  },
+  outLeft: {
     opacity: 0,
     x: "-100vw",
-    transition: {
-      when: "beforeChildren",
-    },
   },
 };
 
@@ -62,50 +64,52 @@ const list = (array) => {
 
 const Slug = ({ page, prev, next, pages }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
+  const [reverse, setReverse] = useState(false);
+
   return (
     <Info>
-      <AnimatePresence>
-        <Page
-          key={page.id}
-          variants={pageVariants}
-          initial='fromRight'
-          animate='in'
-          exit='out'
-          bg={page.backgroundColor.hex}
-        >
-          <Wrapper>
-            {page.entries.map((entry) => (
-              <PageComponent entry={entry} layout={page.layout} />
-            ))}
-          </Wrapper>
-        </Page>
-        <Toc
-          prev={prev}
-          next={next}
-          pages={pages}
-          setIsNavVisible={setIsNavVisible}
-          isNavVisible={isNavVisible}
-        />
-        <Navigation
-          variants={navVariants}
-          initial='hidden'
-          animate={isNavVisible ? "visible" : "hidden"}
-        >
-          <h2>Pages</h2>
-          {pages.map((page, i) => (
-            <Link
-              key={page.id}
-              href={`/dragon/2021/${page.id}`}
-              as={`/dragon/2021/${page.id}`}
-            >
-              <a>
-                <span>{i + 1}</span>
-                <span>{list(page.entries)}</span>
-              </a>
-            </Link>
+      <Page
+        key={page.id}
+        variants={pageVariants}
+        initial={reverse ? "fromLeft" : "fromRight"}
+        animate='in'
+        exit={reverse ? "outRight" : "outLeft"}
+        bg={page.backgroundColor.hex}
+      >
+        <Wrapper>
+          {page.entries.map((entry) => (
+            <PageComponent entry={entry} layout={page.layout} />
           ))}
-        </Navigation>
-      </AnimatePresence>
+        </Wrapper>
+      </Page>
+      <Toc
+        prev={prev}
+        next={next}
+        pages={pages}
+        setIsNavVisible={setIsNavVisible}
+        isNavVisible={isNavVisible}
+        setReverse={setReverse}
+        reverse={reverse}
+      />
+      <Navigation
+        variants={navVariants}
+        initial='hidden'
+        animate={isNavVisible ? "visible" : "hidden"}
+      >
+        <h2>Pages</h2>
+        {pages.map((page, i) => (
+          <Link
+            key={page.id}
+            href={`/dragon/2021/${page.id}`}
+            as={`/dragon/2021/${page.id}`}
+          >
+            <a>
+              <span>{i + 1}</span>
+              <span>{list(page.entries)}</span>
+            </a>
+          </Link>
+        ))}
+      </Navigation>
     </Info>
   );
 };

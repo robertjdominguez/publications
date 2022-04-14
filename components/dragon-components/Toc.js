@@ -4,12 +4,29 @@ import Table from "./Table";
 import Left from "./Left";
 import Right from "./Right";
 
-const Toc = ({ prev, next, setIsNavVisible, isNavVisible }) => {
+const Toc = ({
+  prev,
+  next,
+  setIsNavVisible,
+  isNavVisible,
+  reverse,
+  setReverse,
+}) => {
   return (
     <Widget>
-      <Left year={`2021`} prev={prev} />
+      <Left
+        year={`2021`}
+        prev={prev}
+        reverse={reverse}
+        setReverse={setReverse}
+      />
       <Table setIsNavVisible={setIsNavVisible} isNavVisible={isNavVisible} />
-      <Right year={`2021`} next={next} />
+      <Right
+        year={`2021`}
+        next={next}
+        reverse={reverse}
+        setReverse={setReverse}
+      />
     </Widget>
   );
 };

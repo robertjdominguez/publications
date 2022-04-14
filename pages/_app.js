@@ -5,7 +5,6 @@ import "../styles/globals.css";
 import { AppWrapper } from "../ctx";
 
 function MyApp({ Component, pageProps, router }) {
-  console.log(router.asPath);
   return (
     <AppWrapper>
       <Layout>
@@ -25,8 +24,8 @@ function MyApp({ Component, pageProps, router }) {
   `}
         </Script>
         <AnimatePresence
-          exitBeforeEnter
-          onExitComplete={() => window.scrollTo(0, 0)}
+        // exitBeforeEnter
+        // onExitComplete={() => window.scrollTo(0, 0)}
         >
           <motion.div
             key={router.asPath}
