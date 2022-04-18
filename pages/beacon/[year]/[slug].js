@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Head from "next/head";
 import { beaconFetcher } from "../../../utils/api";
 import { singleEntryQuery, allEntriesQuery } from "../../../utils/queries";
 import Author from "../../../components/beacon-components/AuthorMore";
@@ -6,6 +7,11 @@ import Author from "../../../components/beacon-components/AuthorMore";
 const Slug = ({ entry }) => {
   return (
     <Info>
+      <Head>
+        <title>
+          {entry.title} by: {entry.author.name} | The Altamont School
+        </title>
+      </Head>
       <Wrapper>
         <h1>{entry.title}</h1>
         <h2>By: {entry.author.name}</h2>

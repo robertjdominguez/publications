@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Head from "next/head";
 import { beaconFetcher } from "../../../utils/api";
 import {
   beaconAuthorQuery,
@@ -9,6 +10,9 @@ import Author from "../../../components/beacon-components/AuthorBio";
 const Slug = ({ author }) => {
   return (
     <Info>
+      <Head>
+        <title>Beacon works by {author.name} | The Altamont School</title>
+      </Head>
       <Wrapper>
         <Author
           name={author.name}

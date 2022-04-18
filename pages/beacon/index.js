@@ -1,12 +1,16 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
+import Head from "next/head";
 import { beaconFetcher } from "../../utils/api";
 import { allYearsQuery, landingQuery } from "../../utils/queries";
 
 const index = ({ frontMatter, years }) => {
   return (
     <Container>
+      <Head>
+        <title>The Beacon | The Altamont School</title>
+      </Head>
       <LandingWrapper>
         <Landing>
           <Info>

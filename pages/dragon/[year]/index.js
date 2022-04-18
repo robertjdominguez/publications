@@ -1,12 +1,16 @@
 import { useState, useMemo } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Head from "next/head";
 import { dragonFetcher } from "../../../utils/api";
 import { allYearsQuery, pagesQuery } from "../../../utils/queries";
 
 const index = ({ year }) => {
   return (
     <Main>
+      <Head>
+        <title>The Dragon: {year.year} | The Altamont School</title>
+      </Head>
       <Link href={`/dragon/${year.year}/${year.pages[0].id}`}>
         <a>
           <Content bg={year.coverArt.url} />

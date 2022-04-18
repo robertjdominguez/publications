@@ -1,15 +1,35 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
+import Head from "next/head";
+import { motion } from "framer-motion";
 import { dragonFetcher, truncate } from "../../utils/api";
 import { allYearsQuery, landingQuery } from "../../utils/queries";
+
+const variants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  in: {
+    opacity: 1,
+    y: 0,
+  },
+  out: {
+    opacity: 0,
+    y: 100,
+  },
+};
 
 const index = ({ frontMatter, years }) => {
   return (
     <Container>
+      <Head>
+        <title>The Dragon | The Altamont School</title>
+      </Head>
       <LandingWrapper>
         <Landing>
-          <Info>
+          <Info variants={variants} initial='initial' animate='in' exit='out'>
             <h1>The Dragon</h1>
             <div dangerouslySetInnerHTML={{ __html: frontMatter }} />
             <p>
@@ -203,7 +223,7 @@ const ImageContainer = styled.div`
   }
 `;
 
-const Info = styled.div`
+const Info = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 100%;

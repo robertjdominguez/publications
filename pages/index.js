@@ -6,6 +6,9 @@ import styled from "styled-components";
 export default function Home() {
   return (
     <LandingWrapper>
+      <Head>
+        <title>Student Publications | The Altamont School</title>
+      </Head>
       <div className='wrapper'>
         <h1>
           The Altamont School <span>Student Publications</span>

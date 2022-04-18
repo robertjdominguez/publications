@@ -1,12 +1,38 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+import { motion } from "framer-motion";
 import { actaFetcher, truncate } from "../../utils/api";
 import { allArticlesQuery } from "../../utils/queries";
 
+const variants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  in: {
+    opacity: 1,
+    y: 0,
+  },
+  out: {
+    opacity: 0,
+    y: 100,
+  },
+};
+
 const index = ({ top, posts }) => {
   return (
-    <div className='wrapper'>
+    <motion.div
+      className='wrapper'
+      variants={variants}
+      initial='initial'
+      animate='in'
+      exit='out'
+    >
+      <Head>
+        <title>The Acta Diurna - Student Newspaper | The Altamont School</title>
+      </Head>
       <Landing>
         <img src='./knight-sword.png' alt='Acta Diurna Knight Logo' />
         <h1>The Acta Diurna</h1>
@@ -67,7 +93,7 @@ const index = ({ top, posts }) => {
           </Post>
         ))}
       </Gallery>
-    </div>
+    </motion.div>
   );
 };
 

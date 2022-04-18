@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Head from "next/head";
 import { beaconFetcher } from "../../../utils/api";
 import {
   allYearsQuery,
@@ -10,6 +11,9 @@ import {
 const index = ({ year, data, entries }) => {
   return (
     <Main>
+      <Head>
+        <title>The Beacon: {year} | The Altamont School</title>
+      </Head>
       <Wrapper>
         <Frontmatter>
           <h1>The Beacon: {year}</h1>

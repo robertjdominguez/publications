@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import { dragonFetcher } from "../../../utils/api";
 import Link from "next/link";
@@ -71,6 +72,9 @@ const Slug = ({ page, prev, next, pages }) => {
 
   return (
     <Info>
+      <Head>
+        <title>The Dragon: {pages[0].year.year} | The Altamont School</title>
+      </Head>
       <Page
         key={page.id}
         variants={pageVariants}

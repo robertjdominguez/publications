@@ -24,8 +24,8 @@ function MyApp({ Component, pageProps, router }) {
   `}
         </Script>
         <AnimatePresence
-        // exitBeforeEnter
-        // onExitComplete={() => window.scrollTo(0, 0)}
+          // exitBeforeEnter
+          onExitComplete={() => window.scrollTo(0, 0)}
         >
           <motion.div
             key={router.asPath}

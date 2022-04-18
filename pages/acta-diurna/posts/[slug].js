@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Head from "next/head";
 import { actaFetcher } from "../../../utils/api";
 import { SingleArticleQuery, allArticlesQuery } from "../../../utils/queries";
 
@@ -13,6 +14,9 @@ function genTime(created) {
 const Slug = ({ post }) => {
   return (
     <div className='wrapper'>
+      <Head>
+        <title>{post.headline} - The Acta Diurna | The Altamont School</title>
+      </Head>
       <h1>{post.headline}</h1>
       <Deets>
         <Author src={post.author.image.url} alt={post.author.name} />
