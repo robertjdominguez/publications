@@ -19,7 +19,15 @@ const index = ({ year, data, entries }) => {
         <Gallery>
           <Deets>
             <h2>Submissions</h2>
-            <p>Below you'll find the contents of this year's Beacon.</p>
+            <p>
+              Below you'll find the contents of this year's Beacon.
+              Alternatively,{" "}
+              {data.hardcopy != null && (
+                <a href={data.hardcopy.url} target='_blank'>
+                  click here to view a PDF of the entire publication.
+                </a>
+              )}
+            </p>
           </Deets>
           {entries.map((entry) => (
             <Link href={`/beacon/${year}/${entry.slug}`} key={entry.id}>
@@ -147,5 +155,14 @@ const Deets = styled.div`
   h2,
   p {
     margin: 0;
+  }
+
+  a {
+    border-bottom: solid 1px transparent;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      border-bottom: solid 1px var(--accent);
+    }
   }
 `;

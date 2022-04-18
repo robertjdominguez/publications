@@ -27,6 +27,14 @@ const Content = styled.div`
   column-count: ${(props) => (props.layout === `short_story_1` ? 3 : 1)};
   column-width: ${(props) =>
     props.layout === `short_story_1` ? `300px` : null};
+
+  blockquote {
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 40px;
+  }
 `;
 
 const Author = styled.p`

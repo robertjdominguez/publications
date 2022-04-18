@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {
   yearPagesQuery,
   pagesQuery,
+  allDragonPagesQuery,
   singlePageQuery,
 } from "../../../utils/queries";
 import PageComponent from "../../../components/dragon-components/PageComponent";
@@ -66,6 +67,8 @@ const Slug = ({ page, prev, next, pages }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
   const [reverse, setReverse] = useState(false);
 
+  console.log(pages);
+
   return (
     <Info>
       <Page
@@ -100,8 +103,8 @@ const Slug = ({ page, prev, next, pages }) => {
         {pages.map((page, i) => (
           <Link
             key={page.id}
-            href={`/dragon/2021/${page.id}`}
-            as={`/dragon/2021/${page.id}`}
+            href={`/dragon/${page.year.year}/${page.id}`}
+            as={`/dragon/${page.year.year}/${page.id}`}
           >
             <a>
               <span>{i + 1}</span>
@@ -115,9 +118,9 @@ const Slug = ({ page, prev, next, pages }) => {
 };
 
 export const getStaticProps = async (ctx) => {
-  const { slug } = ctx.params;
+  const { year, slug } = ctx.params;
   const { page } = await dragonFetcher(singlePageQuery, { id: slug });
-  const { pages } = await dragonFetcher(yearPagesQuery, { year: `2021` });
+  const { pages } = await dragonFetcher(yearPagesQuery, { year: year });
 
   // find the index of the current page
   const index = pages.findIndex((p) => p.id === slug);
@@ -134,12 +137,17 @@ export const getStaticProps = async (ctx) => {
 
 // get static paths for all entries
 export const getStaticPaths = async (ctx) => {
-  const fetched = await dragonFetcher(pagesQuery, {
-    // TODO: remove this hardcoded value!
-    year: `2021`,
+  const { years } = await dragonFetcher(allDragonPagesQuery);
+
+  const pages = [];
+  years.forEach((year) => {
+    year.pages.forEach((page) => {
+      pages.push(page);
+    });
   });
+
   return {
-    paths: fetched.year.pages.map((page) => ({
+    paths: pages.map((page) => ({
       params: { slug: page.id, year: page.year.year },
     })),
     fallback: false,

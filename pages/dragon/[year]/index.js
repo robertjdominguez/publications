@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Link from "next/link";
 import { dragonFetcher } from "../../../utils/api";
 import { allYearsQuery, pagesQuery } from "../../../utils/queries";
-import PageBlock from "../../../components/dragon-components/PageBlock";
 
 const index = ({ year }) => {
   return (

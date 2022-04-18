@@ -61,6 +61,9 @@ query allYearsQuery {
         html
       }
       year
+      hardcopy {
+        url
+      }
       coverArt {
         url
       }
@@ -77,6 +80,9 @@ query singleYearQuery($year: String = "") {
       }
       year
       coverArt {
+        url
+      }
+      hardcopy {
         url
       }
     }
@@ -307,6 +313,45 @@ query MyQuery($year: String = "") {
     }
     backgroundColor {
       hex
+    }
+    year {
+      year
+    }
+  }
+}
+`;
+
+export const allDragonPagesQuery = `
+query AllPagesQuery {
+  years {
+    id
+    introduction {
+      html
+    }
+    year
+    coverArt {
+      url
+    }
+    pages {
+      id
+      layout
+      backgroundColor {
+        hex
+      }
+      year {
+        year
+      }
+      entries {
+        title
+        author
+        contentType
+        body {
+          html
+        }
+        image {
+          url
+        }
+      }
     }
   }
 }

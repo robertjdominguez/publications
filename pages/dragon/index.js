@@ -32,6 +32,9 @@ const index = ({ frontMatter, years }) => {
                   __html: truncate(year.introduction.html, 500),
                 }}
               />
+              <HardCopy href={year.hardcopy.url} target='_blank'>
+                View a PDF &rarr;
+              </HardCopy>
               <Link href={`/dragon/${year.year}`} scroll={false}>
                 <a>View Issue &rarr;</a>
               </Link>
@@ -204,4 +207,15 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const HardCopy = styled.a`
+  text-decoration: none !important;
+  color: var(--black) !important;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  background: transparent !important;
+  border-bottom: solid 1px var(--accent) !important;
+  border-radius: 0 !important;
 `;
