@@ -36,6 +36,7 @@ export default Toc;
 const Widget = styled(motion.div)`
   display: flex;
   gap: 10px;
+  align-items: center;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -48,6 +49,7 @@ const Widget = styled(motion.div)`
   cursor: pointer;
   transition: ease-in-out 0.2s;
   opacity: 0.8;
+  color: white;
 
   :hover {
     box-shadow: var(--lg-shadow);

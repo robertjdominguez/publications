@@ -17,15 +17,15 @@ import Toc from "../../../components/dragon-components/Toc";
 const pageVariants = {
   fromLeft: {
     opacity: 0,
-    x: "-400",
+    x: "-100vw",
   },
   fromRight: {
     opacity: 0,
-    x: "400",
+    x: "100vw",
   },
   in: {
     opacity: 1,
-    x: 0,
+    x: "0vw",
     transition: {
       duration: 0.5,
       type: "spring",
@@ -35,11 +35,11 @@ const pageVariants = {
   },
   outRight: {
     opacity: 0,
-    x: "400",
+    x: "100vw",
   },
   outLeft: {
     opacity: 0,
-    x: "-400",
+    x: "-100vw",
   },
 };
 
@@ -102,6 +102,7 @@ const Slug = ({ page, prev, next, pages }) => {
         variants={navVariants}
         initial='hidden'
         animate={isNavVisible ? "visible" : "hidden"}
+        exit='hidden'
       >
         <h2>Pages</h2>
         {pages.map((page, i) => (
@@ -185,7 +186,7 @@ const Wrapper = styled.div`
 `;
 
 const Navigation = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

@@ -40,4 +40,5 @@ export const SVG = styled.svg`
     transform: scale(1.1);
   }
   opacity: ${(props) => (props.prev ? 1 : 0)};
+  margin-bottom: 7px;
 `;
