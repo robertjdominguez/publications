@@ -4,7 +4,7 @@ const PageComponent = ({ entry, layout }) => {
   return (
     <Entry>
       <h1>{entry.title}</h1>
-      <img src={entry.image?.url} />
+      {/* <img src={entry.image?.url} /> */}
       <Content
         layout={layout}
         dangerouslySetInnerHTML={{ __html: entry.body?.html }}
