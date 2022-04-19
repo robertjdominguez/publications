@@ -17,11 +17,11 @@ import Toc from "../../../components/dragon-components/Toc";
 const pageVariants = {
   fromLeft: {
     opacity: 0,
-    x: "-100vw",
+    x: "-400",
   },
   fromRight: {
     opacity: 0,
-    x: "100vw",
+    x: "400",
   },
   in: {
     opacity: 1,
@@ -35,11 +35,11 @@ const pageVariants = {
   },
   outRight: {
     opacity: 0,
-    x: "100vw",
+    x: "400",
   },
   outLeft: {
     opacity: 0,
-    x: "-100vw",
+    x: "-400",
   },
 };
 
@@ -160,19 +160,10 @@ export const getStaticPaths = async (ctx) => {
 
 export default Slug;
 
-const Info = styled.div`
-  /* display: flex;
-  flex-direction: column; */
-  background: var(--black);
-  color: white;
-  padding-top: 10vh;
-  margin-top: -10vh;
-  width: 100%;
-`;
-
 const Page = styled(motion.div)`
   width: 100%;
   background: ${(props) => props.bg};
+  color: white;
   margin-top: -10vh;
   padding-top: 10vh;
 
