@@ -71,7 +71,7 @@ const Slug = ({ page, prev, next, pages }) => {
   console.log(pages);
 
   return (
-    <Info>
+    <>
       <Head>
         <title>The Dragon: {pages[0].year.year} | The Altamont School</title>
       </Head>
@@ -117,7 +117,7 @@ const Slug = ({ page, prev, next, pages }) => {
           </Link>
         ))}
       </Navigation>
-    </Info>
+    </>
   );
 };
 
