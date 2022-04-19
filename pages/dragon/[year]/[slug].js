@@ -161,12 +161,13 @@ export const getStaticPaths = async (ctx) => {
 export default Slug;
 
 const Info = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   background: var(--black);
   color: white;
   padding-top: 10vh;
   margin-top: -10vh;
+  width: 100%;
 `;
 
 const Page = styled(motion.div)`
@@ -183,8 +184,8 @@ const Page = styled(motion.div)`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 60px;
   padding: 2vw;
   max-width: 1200px;
   margin: 0 auto;

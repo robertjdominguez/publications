@@ -21,6 +21,11 @@ const Entry = styled.div`
   p {
     margin: 0;
   }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Content = styled.div`
