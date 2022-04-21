@@ -169,6 +169,9 @@ query dragonPagesQuery($year: String!) {
     backgroundColor {
       hex
     }
+    foregroundColor {
+      hex
+    }
     entries {
       id
       title
@@ -195,6 +198,9 @@ query singleEntryQuery($id: ID!) {
   page(where: {id: $id}) {
     id
     backgroundColor {
+      hex
+    }
+    foregroundColor {
       hex
     }
     entries {
@@ -264,6 +270,9 @@ query MyQuery($year: String = "") {
       backgroundColor {
         hex
       }
+      foregroundColor {
+        hex
+      }
       year {
         year
       }
@@ -287,6 +296,9 @@ export const singlePageQuery = `
 query MyQuery($id: ID = "") {
   page(where: {id: $id}) {
     backgroundColor {
+      hex
+    }
+    foregroundColor {
       hex
     }
     layout
@@ -314,6 +326,9 @@ query MyQuery($year: String = "") {
     backgroundColor {
       hex
     }
+    foregroundColor {
+      hex
+    }
     year {
       year
     }
@@ -336,6 +351,9 @@ query AllPagesQuery {
       id
       layout
       backgroundColor {
+        hex
+      }
+      foregroundColor {
         hex
       }
       year {

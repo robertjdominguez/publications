@@ -68,8 +68,6 @@ const Slug = ({ page, prev, next, pages }) => {
   const [isNavVisible, setIsNavVisible] = useState(false);
   const [reverse, setReverse] = useState(false);
 
-  console.log(pages);
-
   return (
     <>
       <Head>
@@ -82,6 +80,7 @@ const Slug = ({ page, prev, next, pages }) => {
         animate='in'
         exit={reverse ? "outRight" : "outLeft"}
         bg={page.backgroundColor.hex}
+        fg={page.foregroundColor?.hex}
       >
         <Wrapper>
           {page.entries.map((entry) => (
@@ -164,7 +163,7 @@ export default Slug;
 const Page = styled(motion.div)`
   width: 100%;
   background: ${(props) => props.bg};
-  color: white;
+  color: ${(props) => (props.fg != null ? props.fg : "white")};
   margin-top: -10vh;
   padding-top: 10vh;
 
