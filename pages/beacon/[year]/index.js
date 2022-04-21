@@ -25,11 +25,14 @@ const index = ({ year, data, entries }) => {
             <h2>Submissions</h2>
             <p>
               Below you'll find the contents of this year's Beacon.
-              Alternatively,{" "}
               {data.hardcopy != null && (
-                <a href={data.hardcopy.url} target='_blank'>
-                  click here to view a PDF of the entire publication.
-                </a>
+                <>
+                  {" "}
+                  Alternatively,{" "}
+                  <a href={data.hardcopy.url} target='_blank'>
+                    click here to view a PDF of the entire publication.
+                  </a>
+                </>
               )}
             </p>
           </Deets>

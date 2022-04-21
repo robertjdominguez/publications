@@ -20,7 +20,6 @@ const variants = {
   },
   out: {
     opacity: 0,
-    y: 100,
   },
 };
 
@@ -207,6 +206,7 @@ const Container = styled.div`
   color: var(--black);
   margin-top: -10vh;
   padding-top: 10vh;
+  min-height: 100vh;
 `;
 
 const ImageContainer = styled.div`

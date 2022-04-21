@@ -5,11 +5,11 @@ const PageComponent = ({ entry, layout }) => {
     <Entry>
       <h1>{entry.title}</h1>
       <img src={entry.image?.url} />
+      <Author>{entry.author}</Author>
       <Content
         layout={layout}
         dangerouslySetInnerHTML={{ __html: entry.body?.html }}
       />
-      <Author>{entry.author}</Author>
     </Entry>
   );
 };
@@ -31,7 +31,7 @@ const Entry = styled.div`
 const Content = styled.div`
   column-count: ${(props) => (props.layout === `short_story_1` ? 3 : 1)};
   column-width: ${(props) =>
-    props.layout === `short_story_1` ? `300px` : null};
+    props.layout === `short_story_1` ? `350px` : null};
 
   blockquote {
     font-size: 1.2rem;
