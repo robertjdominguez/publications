@@ -54,9 +54,11 @@ const index = ({ frontMatter, years }) => {
                   __html: truncate(year.introduction.html, 500),
                 }}
               />
-              <HardCopy href={year.hardcopy.url} target='_blank'>
-                View a PDF &rarr;
-              </HardCopy>
+              {year.HardCopy != null && (
+                <HardCopy href={year.hardcopy?.url} target='_blank'>
+                  View a PDF &rarr;
+                </HardCopy>
+              )}
               <Link href={`/dragon/${year.year}`} scroll={false}>
                 <a>View Issue &rarr;</a>
               </Link>
