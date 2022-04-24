@@ -301,6 +301,9 @@ query MyQuery($id: ID = "") {
     foregroundColor {
       hex
     }
+    year {
+      year
+    }
     layout
     entries {
       title

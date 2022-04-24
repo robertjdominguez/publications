@@ -96,6 +96,7 @@ const Slug = ({ page, prev, next, pages }) => {
         isNavVisible={isNavVisible}
         setReverse={setReverse}
         reverse={reverse}
+        year={page.year.year}
       />
       <Navigation
         variants={navVariants}

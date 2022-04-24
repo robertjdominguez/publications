@@ -11,18 +11,14 @@ const Toc = ({
   isNavVisible,
   reverse,
   setReverse,
+  year,
 }) => {
   return (
     <Widget>
-      <Left
-        year={`2021`}
-        prev={prev}
-        reverse={reverse}
-        setReverse={setReverse}
-      />
+      <Left year={year} prev={prev} reverse={reverse} setReverse={setReverse} />
       <Table setIsNavVisible={setIsNavVisible} isNavVisible={isNavVisible} />
       <Right
-        year={`2021`}
+        year={year}
         next={next}
         reverse={reverse}
         setReverse={setReverse}
