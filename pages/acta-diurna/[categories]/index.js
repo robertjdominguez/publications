@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
+import Image from "next/Image";
+import Link from "next/Link";
+import { actaFetcher } from "../../../utils/api";
+import { categoryQuery } from "../../../utils/queries";
+import Menu from "../../../components/acta-diurna-components/Menu";
 import { motion } from "framer-motion";
-import { actaFetcher, truncate } from "../../utils/api";
-import { allArticlesQuery } from "../../utils/queries";
-import Menu from "../../components/acta-diurna-components/Menu";
 
 const variants = {
   initial: {
@@ -25,7 +25,7 @@ const variants = {
   },
 };
 
-const index = ({ top, posts }) => {
+const index = ({ posts }) => {
   return (
     <motion.div
       className='wrapper'
@@ -34,33 +34,7 @@ const index = ({ top, posts }) => {
       animate='in'
       exit='out'
     >
-      <Head>
-        <title>The Acta Diurna - Student Newspaper | The Altamont School</title>
-      </Head>
       <Menu />
-      <h2>Recent Stories</h2>
-      <Recent>
-        {top.map((post) => (
-          <div key={post.id}>
-            <RecentImg>
-              <Image
-                src={post.image.url}
-                alt={post.headline}
-                layout='fill'
-                objectFit='cover'
-                placeholder='blur'
-                blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
-              />
-            </RecentImg>
-            <h3>{post.headline}</h3>
-            <p>{truncate(post.hook, 100)}</p>
-            <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
-              <a>Read More &rarr;</a>
-            </Link>
-          </div>
-        ))}
-      </Recent>
-      <h2>All Stories</h2>
       <Gallery>
         {posts.map((post) => (
           <Post key={post.id}>
@@ -90,66 +64,61 @@ const index = ({ top, posts }) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const { posts } = await actaFetcher(allArticlesQuery);
+export const getStaticProps = async (ctx) => {
+  const { categories } = ctx.params;
+  const { posts } = await actaFetcher(categoryQuery, { category: categories });
 
   return {
     props: {
       posts,
-      top: posts.slice(0, 3),
     },
+  };
+};
+
+// get static paths for all entries
+export const getStaticPaths = async () => {
+  //   hardcoded query categories
+  const cats = [
+    `altamont_life`,
+    `world_wide`,
+    `interviews`,
+    `opinion`,
+    `politics`,
+    `sports`,
+    `lifestyle`,
+  ];
+  console.log(cats);
+  return {
+    paths: cats.map((cat) => ({
+      params: { categories: cat },
+    })),
+    fallback: false,
   };
 };
 
 export default index;
 
-const Recent = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
-  align-content: space-between;
-  margin-bottom: 5vh;
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    a {
-      margin-left: auto;
-      text-decoration: none;
-      background: var(--dark-grey);
-      color: white;
-      padding: 8px 10px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        background: var(--light-grey);
-      }
-
-      @media (max-width: 600px) {
-         {
-          width: 100%;
-          text-align: center;
-        }
-      }
-    }
-  }
+const FullImg = styled.img`
+  width: 100%;
+  height: auto;
+  justify-self: center;
 `;
 
-const RecentImg = styled.div`
+const Info = styled.div`
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 300px;
-  background-image: url(${(props) => props.bg});
-  background-position: center;
-  background-size: cover;
+  flex-direction: column;
+  background: var(--black);
+  color: white;
+  margin-top: -10vh;
+  padding-top: 10vh;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const Gallery = styled.div`

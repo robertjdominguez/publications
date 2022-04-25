@@ -42,6 +42,28 @@ query SingleArticleQuery($slug: String!) {
 }
 `;
 
+// Category query
+export const categoryQuery = `
+query MyQuery($category: Categories!) {
+  posts(where: {category: $category}) {
+    slug
+    headline
+    hook
+    image {
+      url
+    }
+    headline
+    publishedAt
+    author {
+      name
+      image {
+        url
+      }
+    }
+  }
+}
+`;
+
 // Beacon and Dragon Queries
 export const landingQuery = `
 query landingQuery {
