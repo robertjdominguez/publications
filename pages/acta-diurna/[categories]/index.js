@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Head from "next/head";
-import Image from "next/Image";
-import Link from "next/Link";
+import Image from "next/image";
+import Link from "next/link";
 import { actaFetcher } from "../../../utils/api";
 import { categoryQuery } from "../../../utils/queries";
 import Menu from "../../../components/acta-diurna-components/Menu";
