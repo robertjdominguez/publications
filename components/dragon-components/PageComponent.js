@@ -33,6 +33,10 @@ const Content = styled.div`
   column-width: ${(props) =>
     props.layout === `short_story_1` ? `350px` : null};
 
+  p {
+    text-indent: 2em;
+  }
+
   blockquote {
     font-size: 1.2rem;
     font-weight: 800;
