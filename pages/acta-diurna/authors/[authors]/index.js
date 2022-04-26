@@ -2,9 +2,9 @@ import styled from "styled-components";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { actaFetcher } from "../../../utils/api";
-import { categoryQuery } from "../../../utils/queries";
-import Menu from "../../../components/acta-diurna-components/Menu";
+import { actaFetcher } from "../../../../utils/api";
+import { authorsQuery, singleAuthorQuery } from "../../../../utils/queries";
+import Menu from "../../../../components/acta-diurna-components/Menu";
 import { motion } from "framer-motion";
 
 const variants = {
@@ -76,31 +76,23 @@ const index = ({ posts }) => {
 };
 
 export const getStaticProps = async (ctx) => {
-  const { categories } = ctx.params;
-  const { posts } = await actaFetcher(categoryQuery, { category: categories });
+  const { authors } = ctx.params;
+  const { author } = await actaFetcher(singleAuthorQuery, { slug: authors });
 
   return {
     props: {
-      posts,
+      author,
+      posts: author.post !== null ? author.post : [],
     },
   };
 };
 
 // get static paths for all entries
 export const getStaticPaths = async () => {
-  //   hardcoded query categories
-  const cats = [
-    `altamont_life`,
-    `world_wide`,
-    `interviews`,
-    `opinion`,
-    `politics`,
-    `sports`,
-    `lifestyle`,
-  ];
+  const { authors } = await actaFetcher(authorsQuery);
   return {
-    paths: cats.map((cat) => ({
-      params: { categories: cat },
+    paths: authors.map((author) => ({
+      params: { authors: author.slug },
     })),
     fallback: false,
   };

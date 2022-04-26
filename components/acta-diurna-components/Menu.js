@@ -1,45 +1,58 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import NavLink from "./NavLink";
+
+const cats = [
+  {
+    name: "Altamont Life",
+    slug: "altamont_life",
+  },
+  {
+    name: "Sports",
+    slug: "sports",
+  },
+  {
+    name: "World Wide",
+    slug: "world_wide",
+  },
+  {
+    name: "Interviews",
+    slug: "interviews",
+  },
+  {
+    name: "Opinions",
+    slug: "opinion",
+  },
+  {
+    name: "Lifestyle",
+    slug: "lifestyle",
+  },
+  {
+    name: "Politics",
+    slug: "politics",
+  },
+];
 
 const Menu = () => {
   return (
     <>
-      <Landing>
-        {/* <ImageDiv> */}
-        <Image
-          src='/knight-sword.png'
-          alt='Acta Diurna Knight Logo'
-          width={300}
-          height={200}
-        />
-        {/* </ImageDiv> */}
-        <h1>The Acta Diurna</h1>
-      </Landing>
+      <Link href='/acta-diurna'>
+        <Landing>
+          <Image
+            src='/knight-sword.png'
+            alt='Acta Diurna Knight Logo'
+            width={300}
+            height={200}
+          />
+
+          <h1>The Acta Diurna</h1>
+        </Landing>
+      </Link>
       <Nav>
-        <li>
-          <Link href='/acta-diurna/altamont_life'>
-            <a>Altamont Life</a>
-          </Link>
-        </li>
-        <Link href='/acta-diurna/sports'>
-          <a>Sports</a>
-        </Link>
-        <Link href='/acta-diurna/world_wide'>
-          <a>World Wide</a>
-        </Link>
-        <Link href='/acta-diurna/interviews'>
-          <a>Interviews</a>
-        </Link>
-        <Link href='/acta-diurna/opinion'>
-          <a>Opinions</a>
-        </Link>
-        <Link href='/acta-diurna/lifestyle'>
-          <a>Lifestyle</a>
-        </Link>
-        <Link href='/acta-diurna/politics'>
-          <a>Politics</a>
-        </Link>
+        {cats.map((cat) => (
+          <NavLink key={cat.slug} link={cat} />
+        ))}
       </Nav>
     </>
   );
@@ -64,16 +77,18 @@ const Nav = styled.ul`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        border-bottom: 1px solid var(--accent);
-        color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      color: var(--accent);
+    }
   }
 `;
 
-const Landing = styled.div`
+const Landing = styled.a`
   display: flex;
   gap: 40px;
   align-items: center;
   margin-bottom: 5vh;
+  cursor: pointer;
 
   h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);

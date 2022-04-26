@@ -12,6 +12,7 @@ query AllPostsQuery {
     publishedAt
     author {
       name
+      slug
       image {
         url
       }
@@ -34,6 +35,7 @@ query SingleArticleQuery($slug: String!) {
     videoLink
     author {
       name
+      slug
       image {
         url
       }
@@ -59,6 +61,41 @@ query MyQuery($category: Categories!) {
       image {
         url
       }
+    }
+  }
+}
+`;
+
+export const authorsQuery = `
+query MyQuery {
+  authors {
+    id
+    name
+    slug
+  }
+}
+`;
+
+export const singleAuthorQuery = `
+query MyQuery($slug: String!) {
+  author(where: {slug: $slug}) {
+    id
+    name
+    post {
+      slug
+    headline
+    hook
+    image {
+      url
+    }
+    headline
+    publishedAt
+    author {
+      name
+      image {
+        url
+      }
+    }
     }
   }
 }

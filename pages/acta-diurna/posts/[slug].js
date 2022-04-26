@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
 import { actaFetcher } from "../../../utils/api";
 import { SingleArticleQuery, allArticlesQuery } from "../../../utils/queries";
 
@@ -18,13 +19,15 @@ const Slug = ({ post }) => {
         <title>{post.headline} - The Acta Diurna | The Altamont School</title>
       </Head>
       <h1>{post.headline}</h1>
-      <Deets>
-        <Author src={post.author.image.url} alt={post.author.name} />
-        <Info>
-          <p>{post.author.name}</p>
-          <small>{genTime(post.createdAt)}</small>
-        </Info>
-      </Deets>
+      <Link href={`/acta-diurna/authors/${post.author.slug}`}>
+        <Deets>
+          <Author src={post.author.image.url} alt={post.author.name} />
+          <Info>
+            <p>{post.author.name}</p>
+            <small>{genTime(post.createdAt)}</small>
+          </Info>
+        </Deets>
+      </Link>
       <FullImg>
         <Image
           src={post.image.url}
@@ -75,6 +78,7 @@ const Deets = styled.div`
   display: flex;
   margin: 2vh 0;
   align-items: center;
+  cursor: pointer;
 
   p {
     margin: 0;

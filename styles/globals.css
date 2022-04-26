@@ -81,3 +81,9 @@ p {
   padding: 0;
   margin: 0;
 }
+
+.active {
+  color: var(--accent) !important;
+  font-weight: 700;
+  border-bottom: solid 2px var(--accent) !important;
+}
