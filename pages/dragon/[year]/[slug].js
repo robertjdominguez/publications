@@ -199,6 +199,7 @@ const Navigation = styled(motion.div)`
   background: black;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 
   a {
     display: flex;
