@@ -1,7 +1,7 @@
 // Acta Diurna Queries
 export const allArticlesQuery = `
 query AllPostsQuery {
-  posts(orderBy: createdAt_DESC) {
+  posts(orderBy: createdAt_DESC, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     slug
     headline
     hook

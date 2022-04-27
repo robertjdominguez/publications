@@ -93,6 +93,8 @@ const index = ({ top, posts }) => {
 export const getStaticProps = async () => {
   const { posts } = await actaFetcher(allArticlesQuery);
 
+  console.log(process.env.NEXT_PUBLIC_STAGE);
+
   return {
     props: {
       posts,
