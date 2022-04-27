@@ -56,7 +56,7 @@ const index = ({ frontMatter, years }) => {
               />
               {year.HardCopy != null && (
                 <HardCopy href={year.hardcopy?.url} target='_blank'>
-                  View a PDF &rarr;
+                  View PDF &rarr;
                 </HardCopy>
               )}
               <Link href={`/dragon/${year.year}`} scroll={false}>
