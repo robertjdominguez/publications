@@ -23,7 +23,7 @@ query AllPostsQuery {
 
 export const SingleArticleQuery = `
 query SingleArticleQuery($slug: String!) {
-  post(where: { slug: $slug }) {
+  post(where: { slug: $slug }, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     headline
     body {
       html
