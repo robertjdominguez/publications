@@ -47,7 +47,7 @@ query SingleArticleQuery($slug: String!) {
 // Category query
 export const categoryQuery = `
 query MyQuery($category: Categories!) {
-  posts(where: {category: $category}) {
+  posts(where: {category: $category}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     slug
     headline
     hook
@@ -114,7 +114,7 @@ query landingQuery {
 
 export const allYearsQuery = `
 query allYearsQuery {
-    years(orderBy: year_DESC) {
+    years(orderBy: year_DESC, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
       id
       introduction {
         html
@@ -132,7 +132,7 @@ query allYearsQuery {
 
 export const singleYearQuery = `
 query singleYearQuery($year: String = "") {
-    year(where: {year: $year}) {
+    year(where: {year: $year}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
       id
       introduction {
         html
@@ -150,7 +150,7 @@ query singleYearQuery($year: String = "") {
 
 export const allEntriesQuery = `
 query allEntriesQuery{
-    entries{
+    entries(stage: ${process.env.NEXT_PUBLIC_STAGE}) {
       title
       image {
         url
@@ -176,7 +176,7 @@ query allEntriesQuery{
 
 export const yearlyEntriesQuery = `
 query yearlyEntriesQuery($year: String!) {
-  entries(where: {year: {year: $year}}, orderBy: contentType_ASC) {
+  entries(where: {year: {year: $year}}, orderBy: contentType_ASC, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     title
     image {
       url
@@ -200,7 +200,7 @@ query yearlyEntriesQuery($year: String!) {
 
 export const singleEntryQuery = `
 query singleEntryQuery($slug: String!) {
-  entry(where: {slug: $slug}) {
+  entry(where: {slug: $slug}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     title
     body {
       html
@@ -223,7 +223,7 @@ query singleEntryQuery($slug: String!) {
 
 export const dragonPagesQuery = `
 query dragonPagesQuery($year: String!) {
-  pages(where: {year: {year: $year}}) {
+  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     backgroundColor {
       hex
@@ -254,7 +254,7 @@ query dragonPagesQuery($year: String!) {
 
 export const singleDragonPage = `
 query singleEntryQuery($id: ID!) {
-  page(where: {id: $id}) {
+  page(where: {id: $id}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     backgroundColor {
       hex
@@ -282,7 +282,7 @@ query singleEntryQuery($id: ID!) {
 
 export const beaconAuthorQuery = `
 query BeaconAuthor($slug: String = "") {
-  author(where: {slug: $slug}) {
+  author(where: {slug: $slug}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     name
     slug
@@ -314,7 +314,7 @@ query MyQuery {
 
 export const pagesQuery = `
 query MyQuery($year: String = "") {
-  year(where: {year: $year}) {
+  year(where: {year: $year}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     introduction {
       html
@@ -353,7 +353,7 @@ query MyQuery($year: String = "") {
 
 export const singlePageQuery = `
 query MyQuery($id: ID = "") {
-  page(where: {id: $id}) {
+  page(where: {id: $id}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     backgroundColor {
       hex
     }
@@ -380,7 +380,7 @@ query MyQuery($id: ID = "") {
 
 export const yearPagesQuery = `
 query MyQuery($year: String = "") {
-  pages(where: {year: {year: $year}}) {
+  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     entries {
       title
@@ -400,7 +400,7 @@ query MyQuery($year: String = "") {
 
 export const allDragonPagesQuery = `
 query AllPagesQuery {
-  years {
+  years(stage: ${process.env.NEXT_PUBLIC_STAGE}) {
     id
     introduction {
       html
