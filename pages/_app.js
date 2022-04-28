@@ -34,10 +34,7 @@ function MyApp({ Component, pageProps, router }) {
             name='og:description'
             content='At The Altamont School, we embrace the importance of student voice through written and visual works. We strive to provide a safe environment for student self-expression. Below, you will find our three student publications and our excellent work.'
           />
-          <meta
-            name='twitter:card'
-            content='At The Altamont School, we embrace the importance of student voice through written and visual works. We strive to provide a safe environment for student self-expression. Below, you will find our three student publications and our excellent work.'
-          />
+          <meta name='twitter:card' content='summary' />
           <meta name='twitter:site' content='@AltamontSchool' />
           <meta name='twitter:title' content='Student Publications Home' />
           <meta
