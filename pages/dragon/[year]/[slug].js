@@ -17,11 +17,11 @@ import Toc from "../../../components/dragon-components/Toc";
 const pageVariants = {
   fromLeft: {
     opacity: 0,
-    x: -400,
+    x: "-100vw",
   },
   fromRight: {
     opacity: 0,
-    x: 400,
+    x: 0,
   },
   in: {
     opacity: 1,
@@ -35,11 +35,11 @@ const pageVariants = {
   },
   outRight: {
     opacity: 0,
-    x: 400,
+    x: "100vw",
   },
   outLeft: {
     opacity: 0,
-    x: -400,
+    x: "-100vw",
   },
 };
 
