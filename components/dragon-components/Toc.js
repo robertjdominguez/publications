@@ -47,6 +47,11 @@ const Widget = styled(motion.div)`
   opacity: 0.8;
   color: white;
 
+  svg {
+    width: 40px;
+    /* max-width: 40px; */
+  }
+
   :hover {
     box-shadow: var(--lg-shadow);
     opacity: 1;

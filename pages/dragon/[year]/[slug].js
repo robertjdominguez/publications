@@ -162,7 +162,7 @@ export const getStaticPaths = async (ctx) => {
 export default Slug;
 
 const Page = styled(motion.div)`
-  width: 100%;
+  width: 100vw;
   background: ${(props) => props.bg};
   color: ${(props) => (props.fg != null ? props.fg : "white")};
   margin-top: -10vh;
