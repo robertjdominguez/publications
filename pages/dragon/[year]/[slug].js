@@ -21,11 +21,11 @@ const pageVariants = {
   },
   fromRight: {
     opacity: 0,
-    x: "100vw",
+    x: 0,
   },
   in: {
     opacity: 1,
-    x: "0vw",
+    x: 0,
     transition: {
       duration: 0.5,
       type: "spring",
@@ -162,7 +162,7 @@ export const getStaticPaths = async (ctx) => {
 export default Slug;
 
 const Page = styled(motion.div)`
-  width: 100%;
+  width: 100vw;
   background: ${(props) => props.bg};
   color: ${(props) => (props.fg != null ? props.fg : "white")};
   margin-top: -10vh;
