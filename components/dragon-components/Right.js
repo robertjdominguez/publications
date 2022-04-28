@@ -6,6 +6,7 @@ const Right = ({ year, next }) => {
     <Link href={next !== null ? `/dragon/${year}/${next}` : `/dragon/${year}`}>
       <a>
         <SVG
+          id='right'
           next={next}
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6'

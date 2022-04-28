@@ -46,7 +46,7 @@ const Menu = () => {
           </motion.li>
           <motion.li variants={MenuChildren}>
             <NavLink onClick={(e) => handleLink(e, "/acta-diurna")}>
-              <NavCombo>The Acta Diurna</NavCombo>
+              <NavCombo>Acta Diurna</NavCombo>
             </NavLink>
           </motion.li>
           <motion.li variants={MenuChildren}>
@@ -87,6 +87,7 @@ export const Choices = styled(motion.ul)`
   overflow: hidden;
   box-shadow: var(--norm-shadow);
   z-index: 5;
+
   li {
     margin-bottom: 2vh;
   }
