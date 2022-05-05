@@ -223,7 +223,7 @@ query singleEntryQuery($slug: String!) {
 
 export const dragonPagesQuery = `
 query dragonPagesQuery($year: String!) {
-  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
+  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}, orderBy: pageNumber_ASC) {
     id
     backgroundColor {
       hex
@@ -323,7 +323,7 @@ query MyQuery($year: String = "") {
     coverArt {
       url
     }
-    pages {
+    pages(orderBy: pageNumber_ASC) {
       id
       layout
       backgroundColor {
@@ -380,7 +380,7 @@ query MyQuery($id: ID = "") {
 
 export const yearPagesQuery = `
 query MyQuery($year: String = "") {
-  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}) {
+  pages(where: {year: {year: $year}}, stage: ${process.env.NEXT_PUBLIC_STAGE}, orderBy: pageNumber_ASC) {
     id
     entries {
       title
@@ -409,7 +409,7 @@ query AllPagesQuery {
     coverArt {
       url
     }
-    pages {
+    pages(orderBy: pageNumber_ASC) {
       id
       layout
       backgroundColor {
