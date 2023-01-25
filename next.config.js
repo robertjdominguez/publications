@@ -6,6 +6,8 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    workerThreads: false,
+    cpus: 1
   },
 };
 
