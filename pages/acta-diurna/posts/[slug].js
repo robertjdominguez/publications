@@ -40,14 +40,17 @@ const Slug = ({ post }) => {
       </FullImg>
       <Body dangerouslySetInnerHTML={{ __html: post.body.html }} />
       {/* video embed */}
-      <div>
-        <iframe
-          src="https://www.youtube.com/embed/siaxGjttoVM"
-          style={{ width: "100%", height: "100%", aspectRatio: "16/9", borderRadius: "8px" }}
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      </div>
+      {post.videoLink && (
+        <div>
+          <iframe
+            src={post.videoLink}
+            style={{ width: "100%", height: "100%", aspectRatio: "16/9", borderRadius: "8px" }}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )}
     </div>
   );
 };
