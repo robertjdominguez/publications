@@ -27,13 +27,7 @@ const variants = {
 
 const index = ({ top, posts }) => {
   return (
-    <motion.div
-      className='wrapper'
-      variants={variants}
-      initial='initial'
-      animate='in'
-      exit='out'
-    >
+    <motion.div className="wrapper" variants={variants} initial="initial" animate="in" exit="out">
       <Head>
         <title>The Acta Diurna - Student Newspaper | The Altamont School</title>
       </Head>
@@ -46,9 +40,9 @@ const index = ({ top, posts }) => {
               <Image
                 src={post.image.url}
                 alt={post.headline}
-                layout='fill'
-                objectFit='cover'
-                placeholder='blur'
+                layout="fill"
+                objectFit="cover"
+                placeholder="blur"
                 blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
               />
             </RecentImg>
@@ -68,15 +62,15 @@ const index = ({ top, posts }) => {
               <Image
                 src={post.image.url}
                 alt={post.headline}
-                layout='fill'
-                objectFit='cover'
-                placeholder='blur'
+                layout="fill"
+                objectFit="cover"
+                placeholder="blur"
                 blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
-                loading='lazy'
-                lazyBoundary='400px'
+                loading="lazy"
+                lazyBoundary="400px"
               />
             </PostImg>
-            <div id='details'>
+            <div id="details">
               <h3>{post.headline}</h3>
               <p>{post.hook}</p>
               <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
@@ -92,8 +86,6 @@ const index = ({ top, posts }) => {
 
 export const getStaticProps = async () => {
   const { posts } = await actaFetcher(allArticlesQuery);
-
-  console.log(process.env.NEXT_PUBLIC_STAGE);
 
   return {
     props: {

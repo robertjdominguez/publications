@@ -14,7 +14,7 @@ function genTime(created) {
 
 const Slug = ({ post }) => {
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
       <Head>
         <title>{post.headline} - The Acta Diurna | The Altamont School</title>
       </Head>
@@ -32,13 +32,25 @@ const Slug = ({ post }) => {
         <Image
           src={post.image.url}
           alt={post.headline}
-          layout='fill'
-          objectFit='cover'
-          placeholder='blur'
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
           blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
         />
       </FullImg>
       <Body dangerouslySetInnerHTML={{ __html: post.body.html }} />
+      {/* video embed */}
+      {post.videoLink && (
+        <div>
+          <iframe
+            src={post.videoLink}
+            style={{ width: "100%", height: "100%", aspectRatio: "16/9", borderRadius: "8px" }}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )}
     </div>
   );
 };
