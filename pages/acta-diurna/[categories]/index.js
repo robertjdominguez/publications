@@ -27,13 +27,7 @@ const variants = {
 
 const index = ({ posts }) => {
   return (
-    <motion.div
-      className='wrapper'
-      variants={variants}
-      initial='initial'
-      animate='in'
-      exit='out'
-    >
+    <motion.div className="wrapper" variants={variants} initial="initial" animate="in" exit="out">
       <Head>
         <title>The Acta Diurna - Student Newspaper | The Altamont School</title>
       </Head>
@@ -42,7 +36,7 @@ const index = ({ posts }) => {
         <Gallery>
           <Empty>
             <h1>Our journalists are hard at work. Check back soon!</h1>
-            <img src='/typewriter.png' alt='typewriter' />
+            <img src="/typewriter.png" alt="typewriter" />
           </Empty>
         </Gallery>
       )}
@@ -53,15 +47,15 @@ const index = ({ posts }) => {
               <Image
                 src={post.image.url}
                 alt={post.headline}
-                layout='fill'
-                objectFit='cover'
-                placeholder='blur'
+                layout="fill"
+                objectFit="cover"
+                placeholder="blur"
                 blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
-                loading='lazy'
-                lazyBoundary='400px'
+                loading="lazy"
+                lazyBoundary="400px"
               />
             </PostImg>
-            <div id='details'>
+            <div id="details">
               <h3>{post.headline}</h3>
               <p>{post.hook}</p>
               <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
@@ -78,10 +72,25 @@ const index = ({ posts }) => {
 export const getStaticProps = async (ctx) => {
   const { categories } = ctx.params;
   const { posts } = await actaFetcher(categoryQuery, { category: categories });
+  const filteredPosts = posts.filter((post) => {
+    // switch statement to check for null values
+    switch (true) {
+      case post.headline === null:
+        return false;
+      case post.image === null:
+        return false;
+      case post.image.url === null:
+        return false;
+      case post.author.name === null:
+        return false;
+      default:
+        return true;
+    }
+  });
 
   return {
     props: {
-      posts,
+      posts: filteredPosts,
     },
   };
 };
@@ -89,15 +98,7 @@ export const getStaticProps = async (ctx) => {
 // get static paths for all entries
 export const getStaticPaths = async () => {
   //   hardcoded query categories
-  const cats = [
-    `altamont_life`,
-    `world_wide`,
-    `interviews`,
-    `opinion`,
-    `politics`,
-    `sports`,
-    `lifestyle`,
-  ];
+  const cats = [`altamont_life`, `world_wide`, `interviews`, `opinion`, `politics`, `sports`, `lifestyle`];
   return {
     paths: cats.map((cat) => ({
       params: { categories: cat },
