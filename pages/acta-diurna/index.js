@@ -96,7 +96,7 @@ export const getStaticProps = async () => {
         return false;
       case post.image.url === null:
         return false;
-      case post.author.name === null:
+      case post.author === null:
         return false;
       default:
         return true;

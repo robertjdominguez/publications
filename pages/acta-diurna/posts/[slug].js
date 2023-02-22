@@ -58,10 +58,11 @@ const Slug = ({ post }) => {
 export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params;
   const { post } = await actaFetcher(SingleArticleQuery, { slug: slug });
-  post.headline === null && { notFound: true };
-  post.body.html === null && { notFound: true };
-  post.image.url === null && { notFound: true };
-  post.author.name === null && { notFound: true };
+  if (post.headline === null || post.body.html === null || post.image.url === null || post.author === null) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
