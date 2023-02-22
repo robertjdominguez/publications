@@ -27,13 +27,7 @@ const variants = {
 
 const index = ({ posts }) => {
   return (
-    <motion.div
-      className='wrapper'
-      variants={variants}
-      initial='initial'
-      animate='in'
-      exit='out'
-    >
+    <motion.div className="wrapper" variants={variants} initial="initial" animate="in" exit="out">
       <Head>
         <title>The Acta Diurna - Student Newspaper | The Altamont School</title>
       </Head>
@@ -42,7 +36,7 @@ const index = ({ posts }) => {
         <Gallery>
           <Empty>
             <h1>Our journalists are hard at work. Check back soon!</h1>
-            <img src='/typewriter.png' alt='typewriter' />
+            <img src="/typewriter.png" alt="typewriter" />
           </Empty>
         </Gallery>
       )}
@@ -53,15 +47,15 @@ const index = ({ posts }) => {
               <Image
                 src={post.image.url}
                 alt={post.headline}
-                layout='fill'
-                objectFit='cover'
-                placeholder='blur'
+                layout="fill"
+                objectFit="cover"
+                placeholder="blur"
                 blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
-                loading='lazy'
-                lazyBoundary='400px'
+                loading="lazy"
+                lazyBoundary="400px"
               />
             </PostImg>
-            <div id='details'>
+            <div id="details">
               <h3>{post.headline}</h3>
               <p>{post.hook}</p>
               <Link href={`/acta-diurna/posts/${post.slug}`} scroll={false}>
@@ -75,7 +69,7 @@ const index = ({ posts }) => {
   );
 };
 
-export const getStaticProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const { authors } = ctx.params;
   const { author } = await actaFetcher(singleAuthorQuery, { slug: authors });
 
@@ -88,15 +82,15 @@ export const getStaticProps = async (ctx) => {
 };
 
 // get static paths for all entries
-export const getStaticPaths = async () => {
-  const { authors } = await actaFetcher(authorsQuery);
-  return {
-    paths: authors.map((author) => ({
-      params: { authors: author.slug },
-    })),
-    fallback: false,
-  };
-};
+// export const getStaticPaths = async () => {
+//   const { authors } = await actaFetcher(authorsQuery);
+//   return {
+//     paths: authors.map((author) => ({
+//       params: { authors: author.slug },
+//     })),
+//     fallback: false,
+//   };
+// };
 
 export default index;
 

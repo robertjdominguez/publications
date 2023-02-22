@@ -69,7 +69,7 @@ const index = ({ posts }) => {
   );
 };
 
-export const getStaticProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const { categories } = ctx.params;
   const { posts } = await actaFetcher(categoryQuery, { category: categories });
   const filteredPosts = posts.filter((post) => {
@@ -96,16 +96,16 @@ export const getStaticProps = async (ctx) => {
 };
 
 // get static paths for all entries
-export const getStaticPaths = async () => {
-  //   hardcoded query categories
-  const cats = [`altamont_life`, `world_wide`, `interviews`, `opinion`, `politics`, `sports`, `lifestyle`];
-  return {
-    paths: cats.map((cat) => ({
-      params: { categories: cat },
-    })),
-    fallback: false,
-  };
-};
+// export const getStaticPaths = async () => {
+//   //   hardcoded query categories
+//   const cats = [`altamont_life`, `world_wide`, `interviews`, `opinion`, `politics`, `sports`, `lifestyle`];
+//   return {
+//     paths: cats.map((cat) => ({
+//       params: { categories: cat },
+//     })),
+//     fallback: false,
+//   };
+// };
 
 export default index;
 

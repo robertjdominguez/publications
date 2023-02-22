@@ -84,7 +84,7 @@ const index = ({ top, posts }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const { posts } = await actaFetcher(allArticlesQuery);
   // filter posts for any that have null values except for VideoLink
   const filteredPosts = posts.filter((post) => {
