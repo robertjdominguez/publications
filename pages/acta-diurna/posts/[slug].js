@@ -58,6 +58,11 @@ const Slug = ({ post }) => {
 export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params;
   const { post } = await actaFetcher(SingleArticleQuery, { slug: slug });
+  if (post.headline === null || post.body.html === null || post.image.url === null || post.author === null) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
@@ -69,8 +74,10 @@ export const getStaticProps = async (ctx) => {
 // get static paths for all entries
 export const getStaticPaths = async () => {
   const { posts } = await actaFetcher(allArticlesQuery);
+  // filter posts for ones with slugs
+  const filteredPosts = posts.filter((post) => post.slug);
   return {
-    paths: posts.map((post) => ({
+    paths: filteredPosts.map((post) => ({
       params: { slug: post.slug },
     })),
     fallback: false,

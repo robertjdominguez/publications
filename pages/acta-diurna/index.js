@@ -86,11 +86,27 @@ const index = ({ top, posts }) => {
 
 export const getStaticProps = async () => {
   const { posts } = await actaFetcher(allArticlesQuery);
+  // filter posts for any that have null values except for VideoLink
+  const filteredPosts = posts.filter((post) => {
+    // switch statement to check for null values
+    switch (true) {
+      case post.headline === null:
+        return false;
+      case post.image === null:
+        return false;
+      case post.image.url === null:
+        return false;
+      case post.author === null:
+        return false;
+      default:
+        return true;
+    }
+  });
 
   return {
     props: {
-      posts,
-      top: posts.slice(0, 3),
+      posts: filteredPosts,
+      top: filteredPosts.slice(0, 3),
     },
   };
 };

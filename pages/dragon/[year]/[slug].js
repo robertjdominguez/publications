@@ -203,6 +203,7 @@ const Navigation = styled(motion.div)`
 
   a {
     display: flex;
+    gap: 40px;
     margin-bottom: 2vh;
     align-items: center;
     justify-content: space-between;
