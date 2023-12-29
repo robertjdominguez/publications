@@ -32,6 +32,7 @@ query SingleArticleQuery($slug: String!) {
     image {
       url
     }
+    photoCaption
     videoLink
     author {
       name
