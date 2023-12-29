@@ -1,14 +1,16 @@
-import styled from "styled-components";
-import Image from "next/image";
-import Head from "next/head";
-import Link from "next/link";
-import { actaFetcher } from "../../../utils/api";
-import { SingleArticleQuery, allArticlesQuery } from "../../../utils/queries";
+import styled from 'styled-components';
+import Image from 'next/image';
+import Head from 'next/head';
+import Link from 'next/link';
+import BackButton from '../../../components/acta-diurna-components/BackButton';
+import CTA from '../../../components/acta-diurna-components/CTA';
+import { actaFetcher } from '../../../utils/api';
+import { SingleArticleQuery, allArticlesQuery } from '../../../utils/queries';
 
 function genTime(created) {
   const date = new Date(created);
-  return new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'full',
   }).format(date);
 }
 
@@ -38,19 +40,22 @@ const Slug = ({ post }) => {
           blurDataURL={`/_next/image?url=${post.image.url}&w=16&q=1`}
         />
       </FullImg>
+      <Caption>{post.photoCaption}</Caption>
       <Body dangerouslySetInnerHTML={{ __html: post.body.html }} />
       {/* video embed */}
       {post.videoLink && (
         <div>
           <iframe
             src={post.videoLink}
-            style={{ width: "100%", height: "100%", aspectRatio: "16/9", borderRadius: "8px" }}
+            style={{ width: '100%', height: '100%', aspectRatio: '16/9', borderRadius: '8px' }}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         </div>
       )}
+      <CTA />
+      <BackButton />
     </div>
   );
 };
@@ -130,4 +135,17 @@ const Body = styled.div`
     height: auto;
     margin: 4vh 0;
   }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 1.2rem;
+      padding: 0 1rem;
+    }
+  }
+`;
+
+const Caption = styled.p`
+  font-style: italic;
+  font-size: 0.8rem;
+  text-align: center;
 `;

@@ -1,50 +1,49 @@
-import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
-import NavLink from "./NavLink";
+import styled from 'styled-components';
+import Link from 'next/link';
+import Image from 'next/image';
+import NavLink from './NavLink';
 
 const cats = [
   {
-    name: "Altamont Life",
-    slug: "altamont_life",
+    name: 'News',
+    slug: 'altamont_life',
   },
   {
-    name: "Sports",
-    slug: "sports",
+    name: 'Sports',
+    slug: 'sports',
   },
   {
-    name: "World Wide",
-    slug: "world_wide",
+    name: 'World Wide',
+    slug: 'world_wide',
   },
   {
-    name: "Interviews",
-    slug: "interviews",
+    name: 'Interviews',
+    slug: 'interviews',
   },
   {
-    name: "Opinions",
-    slug: "opinion",
+    name: 'Opinions',
+    slug: 'opinion',
   },
   {
-    name: "Lifestyle",
-    slug: "lifestyle",
+    name: 'Lifestyle',
+    slug: 'lifestyle',
   },
   {
-    name: "Politics",
-    slug: "politics",
+    name: 'Politics',
+    slug: 'politics',
+  },
+  {
+    name: 'About',
+    slug: 'about',
   },
 ];
 
 const Menu = () => {
   return (
     <>
-      <Link href='/acta-diurna'>
+      <Link href="/acta-diurna">
         <Landing>
-          <Image
-            src='/knight-sword.png'
-            alt='Acta Diurna Knight Logo'
-            width={300}
-            height={200}
-          />
+          <Image src="/knight-sword.png" alt="Acta Diurna Knight Logo" width={300} height={200} />
 
           <h1>The Acta Diurna</h1>
         </Landing>
@@ -79,7 +78,18 @@ const Nav = styled.ul`
     &:hover {
       border-bottom: 1px solid var(--accent);
       color: var(--accent);
+
+      @media (max-width: 600px) {
+        background: var(--accent);
+        color: var(--white);
+      }
     }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
   }
 `;
 
