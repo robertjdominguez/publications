@@ -14,7 +14,9 @@ function genTime(created) {
   }).format(date);
 }
 
-const Slug = ({ post }) => {
+const Slug = ({ post, staticBlocks }) => {
+  // isolate the CTA from the static blocks
+  const ctaText = staticBlocks[0].cta.html;
   return (
     <div className="wrapper">
       <Head>
@@ -54,7 +56,7 @@ const Slug = ({ post }) => {
           />
         </div>
       )}
-      <CTA />
+      <CTA text={ctaText} />
       <BackButton />
     </div>
   );
@@ -62,7 +64,7 @@ const Slug = ({ post }) => {
 
 export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params;
-  const { post } = await actaFetcher(SingleArticleQuery, { slug: slug });
+  const { post, staticBlocks } = await actaFetcher(SingleArticleQuery, { slug: slug });
   if (post.headline === null || post.body.html === null || post.image.url === null || post.author === null) {
     return {
       notFound: true,
@@ -72,6 +74,7 @@ export const getStaticProps = async (ctx) => {
   return {
     props: {
       post,
+      staticBlocks,
     },
   };
 };

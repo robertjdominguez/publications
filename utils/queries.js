@@ -42,6 +42,11 @@ query SingleArticleQuery($slug: String!) {
       }
     }
   }
+  staticBlocks {
+    cta {
+      html
+    }
+  }
 }
 `;
 
@@ -97,6 +102,26 @@ query MyQuery($slug: String!) {
         url
       }
     }
+    }
+  }
+}
+`;
+
+export const AboutPageQuery = `
+query aboutPageQuery {
+  staticBlocks {
+    aboutPage {
+      html
+    }
+  }
+}
+`;
+
+export const CTAQuery = `
+query ctaQuery {
+  staticBlocks {
+    CTA {
+      html
     }
   }
 }

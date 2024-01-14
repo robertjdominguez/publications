@@ -1,17 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function CTA() {
-  return (
-    <CTAWrapper>
-      <p>
-        <i>
-          To share your thoughts on this or on anything you've seen in The Acta Diurna, to suggest story ideas, or to
-          become a contributor, <a href="mailto:MediaJournalismSpring2023@AltamontSchool.org">email us</a>.
-        </i>
-      </p>
-    </CTAWrapper>
-  );
+export default function CTA({ text }) {
+  console.log(text);
+  return <CTAWrapper dangerouslySetInnerHTML={{ __html: text }}></CTAWrapper>;
 }
 
 const CTAWrapper = styled.div`
