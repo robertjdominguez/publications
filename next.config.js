@@ -2,12 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["media.graphcms.com", "media.graphassets.com"],
+    domains: [
+      "media.graphcms.com",
+      "media.graphassets.com",
+      "us-east-1.graphassets.com",
+    ],
   },
   experimental: {
     scrollRestoration: true,
     workerThreads: false,
-    cpus: 1
+    cpus: 1,
   },
 };
 
